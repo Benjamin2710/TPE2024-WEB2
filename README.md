@@ -3,6 +3,7 @@ WEB2
 ![alt text](image.png)
 
 Ferioli, Nicolas Adrian (feriolinicolas@gmail.com) | D'Annunzio, Benjamín (dannunzio98@gmail.com)
+
 Base de datos de Peliculas con sus autores y sus respectivos generos.
 
 Posee dos tablas:
