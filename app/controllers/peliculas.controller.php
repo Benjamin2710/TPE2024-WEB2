@@ -17,8 +17,13 @@ class PeliculasController {
     }
 
     public function showpelicula($id) {
-        $pelicula = $this->model->getPelicula($id);
-        return $this->view->showPelicula($pelicula);
+        if($this->peliculaExists($id)){
+            $pelicula = $this->model->getPelicula($id);
+            return $this->view->showPelicula($pelicula);
+        }else{
+            return $this->view->showError('Pelicula no encontrada');
+        }
+        
     }
     
     public function insertarPelicula() {
@@ -47,12 +52,32 @@ class PeliculasController {
     }
 
     public function borrarPelicula($id) {
-        $pelicula = $this->model->getPelicula($id);
-        if ($pelicula) {
+        if ($this->peliculaExists($id)) {
             $this->model->borrarPelicula($id);
             header('Location: ' . BASE_URL . 'peliculas');
         } else {
             return $this->view->showError('La película no existe');
         }
+    }
+
+    public function showPeliculasByGenero($id_genero) {
+        if($this->generoExists($id: $id_genero)){
+            $peliculas = $this->model->getPeliculasByGenero($id_genero);
+            return $this->view->showPeliculas($peliculas);
+        }else{
+            return $this->view->showError('Género no encontrado');
+        }
+    }
+
+    private function generoExists($id) {
+        $query = $this->db->prepare('SELECT COUNT(*) FROM generos WHERE id = ?');
+        $query->execute([$id]);
+        return $query->fetchColumn() > 0;
+    }
+
+    private function peliculaExists($id) {
+        $query = $this->db->prepare('SELECT COUNT(*) FROM peliculas WHERE id = ?');
+        $query->execute([$id]);
+        return $query->fetchColumn() > 0;
     }
 }
