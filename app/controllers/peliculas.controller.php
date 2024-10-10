@@ -1,6 +1,7 @@
 <?php
-require_once './app/models/peliculas.model.php';
-require_once './app/views/peliculas.view.php';
+require_once __DIR__ . '/../models/peliculas.model.php';
+require_once __DIR__ . '/../views/peliculas.view.php';
+
 
 class PeliculasController {
     private $model;
@@ -61,7 +62,7 @@ class PeliculasController {
     }
 
     public function showPeliculasByGenero($id_genero) {
-        if($this->generoExists($id: $id_genero)){
+        if($this->generoExists($id_genero)){
             $peliculas = $this->model->getPeliculasByGenero($id_genero);
             return $this->view->showPeliculas($peliculas);
         }else{
@@ -81,3 +82,6 @@ class PeliculasController {
         return $query->fetchColumn() > 0;
     }
 }
+
+$test = new PeliculasController();
+$test->showpeliculas();
