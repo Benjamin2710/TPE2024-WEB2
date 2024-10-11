@@ -15,7 +15,7 @@ class PeliculasModel {
     }
 
     public function getPelicula($id) {
-        $query = $this->db->prepare('SELECT * FROM peliculas WHERE id=?');
+        $query = $this->db->prepare('SELECT * FROM peliculas WHERE ID_pelicula=?');
         $query->execute([$id]);
         $pelicula = $query->fetch(PDO::FETCH_OBJ); 
     
@@ -35,5 +35,17 @@ class PeliculasModel {
     public function editarPelicula($id, $titulo, $descripcion, $director, $id_genero) {
         $query = $this->db->prepare('UPDATE peliculas SET titulo=?, descripcion=?, director=?, id_genero=? WHERE id=?');
         $query->execute([$titulo, $descripcion, $director, $id_genero, $id]);
+    }
+
+    public function generoExists($id) {
+        $query = $this->db->prepare('SELECT COUNT(*) FROM generos WHERE id = ?');
+        $query->execute([$id]);
+        return $query->fetchColumn() > 0;
+    }
+
+    public function peliculaExists($id) {
+        $query = $this->db->prepare('SELECT COUNT(*) FROM peliculas WHERE ID_pelicula = ?');
+        $query->execute([$id]);
+        return $query->fetchColumn() > 0;
     }
 }

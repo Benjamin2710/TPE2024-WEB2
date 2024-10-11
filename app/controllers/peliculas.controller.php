@@ -12,12 +12,12 @@ class PeliculasController {
         $this->view = new PeliculasView();
     }
 
-    public function showpeliculas() {
+    public function showPeliculas() {
         $peliculas = $this->model->getPeliculas();
         return $this->view->showPeliculas($peliculas);
     }
 
-    public function showpelicula($id) {
+    public function showPelicula($id) {
         if($this->peliculaExists($id)){
             $pelicula = $this->model->getPelicula($id);
             return $this->view->showPelicula($pelicula);
@@ -71,17 +71,10 @@ class PeliculasController {
     }
 
     private function generoExists($id) {
-        $query = $this->db->prepare('SELECT COUNT(*) FROM generos WHERE id = ?');
-        $query->execute([$id]);
-        return $query->fetchColumn() > 0;
+        return $this->model->generoExists($id);
     }
 
     private function peliculaExists($id) {
-        $query = $this->db->prepare('SELECT COUNT(*) FROM peliculas WHERE id = ?');
-        $query->execute([$id]);
-        return $query->fetchColumn() > 0;
+        return $this->model->peliculaExists($id);
     }
 }
-
-$test = new PeliculasController();
-$test->showpeliculas();

@@ -1,0 +1,14 @@
+<?php require_once 'header.phtml'; ?>
+
+<div class="item">
+    <div class="item-image">
+        <img src="<?= BASE_URL ?>frontend/images/poster.jpg" alt="">
+    </div>
+    <div class="item-info">
+        <h1> <?= htmlspecialchars($pelicula->Titulo) ?> </h1>
+        <h2> <?= htmlspecialchars($pelicula->Director) ?> </h2>
+        <p> <?= htmlspecialchars($pelicula->Anio) ?> </p>
+    </div>
+</div>
+<script src="<?= BASE_URL ?>frontend/js/item.js"></script>
+<?php require_once 'footer.phtml'; ?>
