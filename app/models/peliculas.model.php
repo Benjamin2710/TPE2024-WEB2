@@ -15,7 +15,7 @@ class PeliculasModel {
     }
 
     public function getPelicula($id) {
-        $query = $this->db->prepare('SELECT * FROM peliculas WHERE ID_pelicula=?');
+        $query = $this->db->prepare('SELECT * FROM peliculas WHERE id=?');
         $query->execute([$id]);
         $pelicula = $query->fetch(PDO::FETCH_OBJ); 
     
@@ -44,7 +44,7 @@ class PeliculasModel {
     }
 
     public function peliculaExists($id) {
-        $query = $this->db->prepare('SELECT COUNT(*) FROM peliculas WHERE ID_pelicula = ?');
+        $query = $this->db->prepare('SELECT COUNT(*) FROM peliculas WHERE id = ?');
         $query->execute([$id]);
         return $query->fetchColumn() > 0;
     }
