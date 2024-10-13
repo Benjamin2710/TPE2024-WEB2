@@ -36,6 +36,10 @@ switch ($params[0]) {
         $controller = new PeliculasController();
         $controller->borrarPelicula($params[1]);
         break;
+    case 'test':
+        $controller = new PeliculasController();
+        $controller->showFormAltaPelicula();
+        break;
     default: 
         echo "404 Page Not Found"; // deberiamos llamar a un controlador que maneje esto
         break;

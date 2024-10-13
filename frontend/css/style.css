@@ -82,7 +82,7 @@
     display: flex;
     margin: 0 auto;
     background-color: grey;
-    justify-content: center;
+    justify-content:flex-start;
     border-radius: 30px;
     border: 2px solid black;
 }
@@ -98,6 +98,51 @@
     border-radius: 15px;
 }
 
-.item-info {
+.item-info{
+    width: 60%;
+    margin: 10px 30px;
+}
 
+#formPelicula{
+    background-color: grey;
+    width: 80%;
+    margin: 20px auto;
+    justify-content: space-between;
+    border-radius: 30px;
+    border: 2px solid black;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr); /* 8 columnas de igual ancho */
+    grid-template-rows: repeat(5, 1fr); /* 5 filas de igual altura */
+    gap: 10px; /* Espacio entre las celdas del grid */
+    padding: 20px;
+}
+
+#titulo {
+    grid-column: span 5; /* Ocupa 5 columnas */
+}
+
+#anio {
+    grid-column: 7 / span 2; /* Ocupa las 2 columnas restantes */
+}
+
+#director{
+    grid-column: span 4;
+    grid-row: 2;
+}
+
+#formPelicula #input-genero{
+    grid-column: 6 / span 3;
+    grid-row: 2;
+    width: 90%;
+}
+
+#descripcion{
+    grid-column: span 8;
+    grid-row: 3 / span 2;
+}
+
+#btnSubmit{
+    grid-column: 4 / span 2;
+    grid-row: 5;
+    width: 90%;
 }

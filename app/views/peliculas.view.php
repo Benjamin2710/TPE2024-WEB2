@@ -26,6 +26,13 @@ class PeliculasView {
         echo "</pre>";
     }
 
+    public function showFormAltaPelicula($generos) {
+        require 'templates/formAltaPelicula.phtml';
+        echo "<pre>";
+        var_dump($generos);
+        echo "</pre>";
+    }
+
     public function showError($error) {
    //     require 'templates/error.phtml';
         echo "<pre>";

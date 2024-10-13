@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../models/peliculas.model.php';
 require_once __DIR__ . '/../views/peliculas.view.php';
+require_once __DIR__ . '/../models/generos.model.php';
 
 
 class PeliculasController {
@@ -9,6 +10,7 @@ class PeliculasController {
 
     public function __construct() {
         $this->model = new PeliculasModel();
+        $this->generosModel = new GenerosModel();
         $this->view = new PeliculasView();
     }
 
@@ -25,6 +27,11 @@ class PeliculasController {
             return $this->view->showError('Pelicula no encontrada');
         }
         
+    }
+
+    public function showFormAltaPelicula() {
+        $generos = $this->generosModel->getGeneros();
+        return $this->view->showFormAltaPelicula($generos);
     }
     
     public function insertarPelicula() {
@@ -70,7 +77,7 @@ class PeliculasController {
         }
     }
 
-    private function generoExists($id) {
+    private function generoExists($id) { //que lo haga generos model!!!
         return $this->model->generoExists($id);
     }
 
