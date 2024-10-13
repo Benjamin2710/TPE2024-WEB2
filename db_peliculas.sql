@@ -1,11 +1,13 @@
+CREATE DATABASE IF NOT EXISTS db_peliculas;
+USE db_peliculas;
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 24, 2024 at 11:28 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 14-10-2024 a las 00:49:37
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,27 +20,27 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `tpe2024`
+-- Base de datos: `db_peliculas`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `generos`
+-- Estructura de tabla para la tabla `generos`
 --
 
 CREATE TABLE `generos` (
-  `ID_Genero` int(11) NOT NULL,
-  `Nombre` varchar(250) NOT NULL,
-  `Descripción` varchar(250) NOT NULL,
+  `id` int(11) NOT NULL,
+  `nombre` varchar(250) NOT NULL,
+  `descripcion` varchar(250) NOT NULL,
   `clasificacion_por_edad` varchar(255) DEFAULT 'Sin clasificar'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `generos`
+-- Volcado de datos para la tabla `generos`
 --
 
-INSERT INTO `generos` (`ID_Genero`, `Nombre`, `Descripción`, `clasificacion_por_edad`) VALUES
+INSERT INTO `generos` (`id`, `nombre`, `descripcion`, `clasificacion_por_edad`) VALUES
 (1, 'Acción', 'Acción. Generalmente son películas que aportan un toque de adrenalina. Incluyen acrobacias físicas, persecuciones rescates y batallas, lo que las caracteriza principalmente.', 'Sin clasificar'),
 (3, 'Drama', 'Drama is the specific mode of fiction represented in performance: a play, opera, mime, ballet, etc., performed in a theatre, or on radio or television. ', 'Sin clasificar'),
 (4, 'Terror', 'género que pretende o tiene la capacidad de asustar, causar miedo o aterrorizar sus lectores o espectadores e inducir sentimientos de horror y terror.', 'Sin clasificar'),
@@ -47,69 +49,70 @@ INSERT INTO `generos` (`ID_Genero`, `Nombre`, `Descripción`, `clasificacion_por
 -- --------------------------------------------------------
 
 --
--- Table structure for table `peliculas`
+-- Estructura de tabla para la tabla `peliculas`
 --
 
 CREATE TABLE `peliculas` (
-  `ID_pelicula` int(11) NOT NULL,
-  `Titulo` varchar(250) NOT NULL,
-  `Director` varchar(250) NOT NULL,
-  `Anio` int(11) NOT NULL,
-  `ID_Genero` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `titulo` varchar(250) NOT NULL,
+  `director` varchar(250) NOT NULL,
+  `anio` int(11) NOT NULL,
+  `descripcion` varchar(255) NOT NULL DEFAULT 'Sin descripcion.',
+  `id_genero` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `peliculas`
+-- Volcado de datos para la tabla `peliculas`
 --
 
-INSERT INTO `peliculas` (`ID_pelicula`, `Titulo`, `Director`, `Anio`, `ID_Genero`) VALUES
-(1, 'Rapidos y Furiosos 5', 'Justin Lin', 2011, 1),
-(2, 'The Whale', 'Darren Aronofsky', 2022, 3),
-(3, 'La Bruja de Blair', 'Adam Wingard', 2016, 4),
-(4, 'Interestellar', 'Christopher Nolan', 2014, 5);
+INSERT INTO `peliculas` (`id`, `titulo`, `director`, `anio`, `descripcion`, `id_genero`) VALUES
+(1, 'Rapidos y Furiosos 5', 'Justin Lin', 2011, 'Sin descripcion.', 1),
+(2, 'The Whale', 'Darren Aronofsky', 2022, 'Sin descripcion.', 3),
+(3, 'La Bruja de Blair', 'Adam Wingard', 2016, 'Sin descripcion.', 4),
+(4, 'Interestellar', 'Christopher Nolan', 2014, 'Sin descripcion.', 5);
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `generos`
+-- Indices de la tabla `generos`
 --
 ALTER TABLE `generos`
-  ADD PRIMARY KEY (`ID_Genero`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `peliculas`
+-- Indices de la tabla `peliculas`
 --
 ALTER TABLE `peliculas`
-  ADD PRIMARY KEY (`ID_pelicula`),
-  ADD KEY `ID_Generofk` (`ID_Genero`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ID_Generofk` (`id_genero`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `generos`
+-- AUTO_INCREMENT de la tabla `generos`
 --
 ALTER TABLE `generos`
-  MODIFY `ID_Genero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `peliculas`
+-- AUTO_INCREMENT de la tabla `peliculas`
 --
 ALTER TABLE `peliculas`
-  MODIFY `ID_pelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `peliculas`
+-- Filtros para la tabla `peliculas`
 --
 ALTER TABLE `peliculas`
-  ADD CONSTRAINT `peliculas_ibfk_1` FOREIGN KEY (`ID_Genero`) REFERENCES `generos` (`ID_Genero`);
+  ADD CONSTRAINT `peliculas_ibfk_1` FOREIGN KEY (`ID_Genero`) REFERENCES `generos` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
