@@ -22,9 +22,10 @@ class PeliculasModel {
         return $pelicula;
     }
 
-    public function insertarPelicula($titulo, $descripcion, $director, $id_genero) {
-        $query = $this->db->prepare('INSERT INTO peliculas(titulo, descripcion, director, id_genero) VALUES(?,?,?,?)');
-        $query->execute([$titulo, $descripcion, $director, $id_genero]);
+    public function insertarPelicula($titulo, $descripcion, $director, $anio, $id_genero) {
+        $query = $this->db->prepare('INSERT INTO peliculas(titulo, descripcion, director, anio, id_genero) VALUES(?,?,?,?,?)');
+        $query->execute([$titulo, $descripcion, $director, $anio, $id_genero]);
+        return $this->db->lastInsertId();
     }
 
     public function borrarPelicula($id) {

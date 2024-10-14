@@ -38,6 +38,9 @@ class PeliculasController {
         if (!isset($_POST['titulo']) || empty($_POST['titulo'])) {
             return $this->view->showError('Falta completar el título');
         }
+        if (!isset($_POST['anio']) || empty($_POST['anio'])) {
+            return $this->view->showError('Falta completar el año');
+        }
         if (!isset($_POST['descripcion']) || empty($_POST['descripcion'])) {
             return $this->view->showError('Falta completar la descripción');
         }
@@ -51,12 +54,12 @@ class PeliculasController {
         $titulo = $_POST['titulo'];
         $descripcion = $_POST['descripcion'];
         $director = $_POST['director'];
+        $anio = $_POST['anio'];
         $id_genero = $_POST['id_genero'];
 
 
-        $id = $this->model->insertarPelicula($titulo, $descripcion, $director, $id_genero);
+        $id = $this->model->insertarPelicula($titulo, $descripcion, $director, $anio, $id_genero);
         header('Location: ' . BASE_URL . 'pelicula/' . $id); //se redirige a la vista de la película recién insertada
-
     }
 
     public function borrarPelicula($id) {

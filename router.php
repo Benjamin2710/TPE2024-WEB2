@@ -30,17 +30,30 @@ switch ($params[0]) {
         break;
     case 'pelicula':
         $controller = new PeliculasController();
-        $controller->showPelicula($params[1]);
+        if (!isset($params[1]) || empty($params[1])) {
+            $controller->showError("Falta el id de la pelicula");
+        }else{
+            $controller->showPelicula($params[1]);
+        }
         break;
-    case 'eliminar': // todavia no testeado
+    case 'eliminarPelicula':
         $controller = new PeliculasController();
-        $controller->borrarPelicula($params[1]);
+        if (!isset($params[1]) || empty($params[1])) {
+            $controller->showError("Falta el id de la pelicula a eliminar");
+        }else{
+            $controller->borrarPelicula($params[1]);
+        }
         break;
-    case 'test':
+    case 'FormularioAltaPelicula':
         $controller = new PeliculasController();
         $controller->showFormAltaPelicula();
         break;
+    case 'insertarPelicula':
+        $controller = new PeliculasController();
+        $controller->insertarPelicula();
+        break;
     default: 
-        echo "404 Page Not Found"; // deberiamos llamar a un controlador que maneje esto
+        $controller = new PeliculasController();
+        $controller->showError("404 Page Not Found");
         break;
 }
