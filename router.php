@@ -1,6 +1,7 @@
 <?php
 
 require_once 'app/controllers/peliculas.controller.php';
+require_once 'app/controllers/auth.controller.php';
 
 
 // base_url para redirecciones y base tag
@@ -52,6 +53,13 @@ switch ($params[0]) {
         $controller = new PeliculasController();
         $controller->insertarPelicula();
         break;
+    case 'login':
+        $controller = new AuthController();
+        $controller->showLogin();
+        break;
+    case 'auth':
+        $controller = new AuthController();
+        $controller->login();
     default: 
         $controller = new PeliculasController();
         $controller->showError("404 Page Not Found");

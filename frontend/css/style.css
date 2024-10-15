@@ -153,3 +153,28 @@
     border: 1px solid black;
     padding: 3px 9px 3px 4px;
 }
+
+#formLogin{
+    background-color: grey;
+    width: 50%;
+    margin: 20px auto;
+    justify-content: space-between;
+    flex-direction: column;
+    border-radius: 30px;
+    border: 2px solid black;
+    display: flex;
+    padding: 20px;
+}
+
+#formLogin input{
+    width: 60%;
+    height: 30px;
+    border-radius: 6px;
+    border: 1px solid black;
+    padding: 3px 9px 3px 4px;
+    margin: 6px auto;
+}
+
+#formLogin #btnSubmit{
+    width: 20%;
+}
