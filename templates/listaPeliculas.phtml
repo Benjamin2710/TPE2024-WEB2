@@ -1,0 +1,38 @@
+<?php require 'templates/layout/header.phtml'; ?>
+
+<div>
+    <div class="categorias-container">
+        <!-- categorias // input categorias-->
+        <div class="listado-categorias">
+            <span>Géneros:</span>
+            <ul class="lista-generos">
+                <li>
+                    <span class="nombre-genero">Accion</span>
+                    <span class="btn-quitar-seleccion">X</span>
+                </li>
+                <li>
+                    <span class="nombre-genero">Comedia</span>
+                    <span class="btn-quitar-seleccion">X</span>
+                </li>
+            </ul>
+        </div>
+        <select id="input-genero" name="input-genero">
+            <option value="" selected>Género:</option>
+            <option value="Comedia">Comedia</option>
+            <option value="Accion">Accion</option>
+            <option value="Terror">Terror</option>
+            <option value="Romance">Romance</option>
+        </select>
+    </div>
+    <div class="peliculas-container"><!-- peliculas -->
+    <?php foreach($peliculas as $pelicula): ?>
+        <div class="poster"><!-- pelicula -->
+                <a href="pelicula/<?= $pelicula->id ?>">
+                    <img src="frontend/images/poster.jpg" alt="" srcset="">
+                </a>
+        </div>
+    <?php endforeach ?>
+    </div>
+</div>
+<script src="frontend/js/home.js"></script>
+<?php require_once 'templates/layout/footer.phtml'; ?>
