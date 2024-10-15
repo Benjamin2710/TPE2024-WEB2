@@ -53,6 +53,10 @@ switch ($params[0]) {
         $controller = new PeliculasController();
         $controller->insertarPelicula();
         break;
+    case 'signgup':
+        $controller = new AuthController();
+        $controller->showSignup();
+        break;
     case 'login':
         $controller = new AuthController();
         $controller->showLogin();
