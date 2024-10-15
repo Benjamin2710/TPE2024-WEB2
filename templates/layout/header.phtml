@@ -1,11 +1,15 @@
+<?php $title = $title ?? '';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Home</title>
     <link rel="stylesheet" href="<?= BASE_URL ?>frontend/css/style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <?php if ($title): ?>
+        <title><?= htmlspecialchars($title) ?></title>
+    <?php else: ?>
+        <title>Titulo</title>
+    <?php endif; ?>
 </head>
 <body>
     <header>
