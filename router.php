@@ -8,10 +8,11 @@ require_once 'app/controllers/auth.controller.php';
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
 
-$action = 'listar'; // accion por defecto si no se envia ninguna
+$action = 'peliculas'; // accion por defecto si no se envia ninguna
 if (!empty( $_GET['action'])) {
     $action = $_GET['action'];
 }
+
 
 // tabla de ruteo todo (robado del profe por eso dice task)
 
@@ -53,7 +54,7 @@ switch ($params[0]) {
         $controller = new PeliculasController();
         $controller->insertarPelicula();
         break;
-    case 'signgup':
+    case 'signup':
         $controller = new AuthController();
         $controller->showSignup();
         break;
