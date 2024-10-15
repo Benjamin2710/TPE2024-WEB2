@@ -91,7 +91,7 @@ a{
     width: 090%;
     height: auto;
     display: flex;
-    margin: 0 auto;
+    margin: 15px auto;
     background-color: grey;
     justify-content:flex-start;
     border-radius: 30px;
