@@ -88,14 +88,15 @@ class PeliculasController {
         return $this->model->peliculaExists($id);
     }
     //prueba
-    // para mostrar la lista de los géneros
-    public function showGeneros($generos){
-        require 'templates/layout/header.phtml';
-        echo "<h1>Lista de Géneros de Películas</h1>";
-        echo "<ul>";
-        foreach ($generos as $genero) {
-            echo "<li><strong>{$genero->nombre}</strong>: {$genero->descripcion} (Clasificación: {$genero->clasificacion_por_edad})</li>";
+    // Mostrar todos los géneros
+    public function showGeneros()
+    {
+        $generos = $this->model->getGeneros();
+
+        if ($generos) {
+            $this->view->showGeneros($generos);
+        } else {
+            $this->view->showError("No se encontraron géneros.");
         }
-        echo "</ul>";
     }
 }
