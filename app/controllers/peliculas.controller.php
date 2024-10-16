@@ -87,4 +87,15 @@ class PeliculasController {
     private function peliculaExists($id) {
         return $this->model->peliculaExists($id);
     }
+    //prueba
+    // Mostrar todos los géneros
+    public function showGeneros() {
+        $generos = $this->model->getGeneros();
+
+        if ($generos) {
+            $this->view->showGeneros($generos);
+        } else {
+            $this->view->showError("No se encontraron géneros.");
+        }
+    }
 }
