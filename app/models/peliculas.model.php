@@ -49,4 +49,10 @@ class PeliculasModel {
         $query->execute([$id]);
         return $query->fetchColumn() > 0;
     }
+         //prueba
+    public function getGeneros(){
+        $query = $this->db->prepare("SELECT * FROM generos");
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
 }
