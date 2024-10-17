@@ -44,6 +44,7 @@ switch ($params[0]) {
         }
         break;
     case 'eliminarPelicula':
+        AuthHelper::verifyAdmin($res);
         $controller = new PeliculasController();
         if (!isset($params[1]) || empty($params[1])) {
             $controller->showError("Falta el id de la pelicula a eliminar");
@@ -52,10 +53,12 @@ switch ($params[0]) {
         }
         break;
     case 'FormularioAltaPelicula':
+        AuthHelper::verifyAdmin($res);
         $controller = new PeliculasController();
         $controller->showFormAltaPelicula();
         break;
     case 'insertarPelicula':
+        AuthHelper::verifyAdmin($res);
         $controller = new PeliculasController();
         $controller->insertarPelicula();
         break;

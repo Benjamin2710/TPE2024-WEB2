@@ -40,4 +40,15 @@ class AuthHelper {
             $res->user->email = $_SESSION['email_usuario'];
         }
     }
+
+    public static function verifyAdmin($res) {
+        self::init();
+        if(isset($res->user) && 
+        isset($res->user->role) && $res->user->role === 'admin') {
+            return;
+        } else {
+            header('Location: ' . BASE_URL . 'login');
+            die();
+        }
+    }
 }
