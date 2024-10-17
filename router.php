@@ -3,6 +3,8 @@
 require_once 'app/controllers/peliculas.controller.php';
 require_once 'app/controllers/auth.controller.php';
 require_once 'app/controllers/user.controller.php';
+require_once 'app/helper/authHelper.php';
+require_once 'libs/response.php';
 
 
 // base_url para redirecciones y base tag
@@ -14,6 +16,8 @@ if (!empty( $_GET['action'])) {
     $action = $_GET['action'];
 }
 
+$res = new Response();
+AuthHelper::sessionAuth($res);
 
 // tabla de ruteo todo (robado del profe por eso dice task)
 

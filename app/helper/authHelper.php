@@ -19,11 +19,25 @@ class AuthHelper {
         session_destroy();
     }
 
-    public static function verify() {
+    //adaptado para que parezca al middleware del profe
+    public static function verify($res) {
         self::init();
-        if (!isset($_SESSION['id_usuario'])) {
-            header('Location: ' . BASE_URL . 'iniciosesion');
+        if($res->user) {
+            return;
+        } else {
+            header('Location: ' . BASE_URL . 'login');
             die();
+        }
+
+    }
+
+    //esto viene del middleware del profe
+    public static function sessionAuth($res) {
+        self::init();
+        if (isset($_SESSION['id_usuario'])) {
+            $res->user = new stdClass();
+            $res->user->id = $_SESSION['id_usuario'];
+            $res->user->email = $_SESSION['email_usuario'];
         }
     }
 }
