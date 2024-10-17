@@ -39,16 +39,39 @@ class PeliculasView {
         var_dump($error);
         echo "</pre>";
     }
-     //prueba
+
+    
     // Mostrar la lista de géneros
-    public function showGeneros($generos){
+   
+    
+    
+    //prueba
+    public function showGeneros($generos) {
+        // Incluir el encabezado
         require 'templates/layout/header.phtml';
+
         echo "<h1>Lista de Géneros de Películas</h1>";
         echo "<ul>";
         foreach ($generos as $genero) {
-            echo "<li><strong>{$genero->nombre}</strong>: {$genero->descripcion} (Clasificación: {$genero->clasificacion_por_edad})</li>";
+            echo "<li><a href='?action=showPeliculasPorGenero&id={$genero->id}'><strong>{$genero->nombre}</strong></a>: {$genero->descripcion} (Clasificación: {$genero->clasificacion_por_edad})</li>";
         }
         echo "</ul>";
     }
+
+    // Mostrar las películas de un género
+    public function showPeliculasXgenero($peliculas) {
+        // Incluir el encabezado
+        require 'templates/layout/header.phtml';
+
+        echo "<h1>Películas en este Género</h1>";
+        echo "<ul>";
+        foreach ($peliculas as $pelicula) {
+            echo "<li><strong>{$pelicula->titulo}</strong> - Dirigida por {$pelicula->director} ({$pelicula->anio})</li>";
+        }
+        echo "</ul>";
+    }
+
+    
+   
 
 }

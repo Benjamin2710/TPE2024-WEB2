@@ -11,6 +11,7 @@ require_once 'libs/response.php';
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
 
+
 $action = 'peliculas'; // accion por defecto si no se envia ninguna
 if (!empty( $_GET['action'])) {
     $action = $_GET['action'];
@@ -63,6 +64,14 @@ switch ($params[0]) {
         $controller = new PeliculasController(); // Corrección de typo
         $controller->showGeneros();
         break;
+    case 'genero':
+        $controller = new PeliculasController();
+        if (!isset($params[1]) || empty($params[1])) {
+            $controller->showError("Falta el id del género");
+        } else {
+            $controller->showPeliculasByGenero($params[1]);
+        }
+        break;
     case 'signup':
         $controller = new AuthController();
         $controller->showSignup();
@@ -80,6 +89,6 @@ switch ($params[0]) {
         $controller->login();
     default: 
         $controller = new PeliculasController();
-        $controller->showError("404 Page Not Found");
+       // $controller->showError("404 Page Not Found");
         break;
 }

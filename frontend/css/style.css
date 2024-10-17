@@ -177,17 +177,13 @@ a{
     padding: 20px;
 }
 
-#formLogin input, #formLogin select{
+#formLogin input{
     width: 60%;
     height: 30px;
     border-radius: 6px;
     border: 1px solid black;
     padding: 3px 9px 3px 4px;
     margin: 6px auto;
-}
-
-#formLogin select{
-    width: 62%;
 }
 
 #formLogin #btnSubmit{

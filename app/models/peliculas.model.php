@@ -49,10 +49,25 @@ class PeliculasModel {
         $query->execute([$id]);
         return $query->fetchColumn() > 0;
     }
-         //prueba
-    public function getGeneros(){
+
+
+
+ 
+ 
+ 
+ //prueba
+ public function getGeneros() {
         $query = $this->db->prepare("SELECT * FROM generos");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
+
+    // Oagarro películas por género
+    public function getPeliculasPorGenero($idGenero)
+ {
+        $query = $this->db->prepare("SELECT * FROM peliculas WHERE id_genero = ?");
+        $query->execute([$idGenero]);
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+  
 }

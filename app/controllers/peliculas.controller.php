@@ -87,16 +87,29 @@ class PeliculasController {
     private function peliculaExists($id) {
         return $this->model->peliculaExists($id);
     }
+
+
+    
+   
     //prueba
-    // Mostrar todos los géneros
-    public function showGeneros()
-    {
+    public function showGeneros(){
         $generos = $this->model->getGeneros();
 
         if ($generos) {
             $this->view->showGeneros($generos);
         } else {
             $this->view->showError("No se encontraron géneros.");
+        }
+    }
+
+    // X genero
+    public function showPeliculasPorGenero($idGenero){
+        $peliculas = $this->model->getPeliculasPorGenero($idGenero);
+
+        if ($peliculas) {
+            $this->view->showPeliculasXgenero($peliculas);
+        } else {
+            $this->view->showError("No se encontraron películas para este género.");
         }
     }
 }
