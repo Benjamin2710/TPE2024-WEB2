@@ -1,9 +1,13 @@
 <?php    $title = 'Sign up';?>
 <?php require 'templates/layout/header.phtml'; ?>
 <form id="formLogin" action="SingupUser" method="post">
-    <input type="text" name="usuario" id="input-usuario" placeholder="Usuario..." required>
+    <input type="text" name="username" id="input-usuario" placeholder="Usuario..." required>
     <input type="password" name="password" id="input-password" placeholder="Contraseña..." required>
     <input type="password" name="password-confirm" id="input-confirm-password" placeholder="Confirmar contraseña..." required>
+    <select name="role" id="role">
+        <option value="user">Usuario</option>
+        <option value="admin">Administrador</option>
+    </select>
     <input type="submit" value="Enviar" id="btnSubmit">
 </form>
 <?php require 'templates/layout/footer.phtml'; ?>
