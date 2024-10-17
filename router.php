@@ -2,6 +2,7 @@
 
 require_once 'app/controllers/peliculas.controller.php';
 require_once 'app/controllers/auth.controller.php';
+require_once 'app/controllers/user.controller.php';
 
 
 // base_url para redirecciones y base tag
@@ -57,6 +58,10 @@ switch ($params[0]) {
     case 'signup':
         $controller = new AuthController();
         $controller->showSignup();
+        break;
+    case 'signupUser':
+        $controller = new UserController();
+        $controller->signup();
         break;
     case 'login':
         $controller = new AuthController();

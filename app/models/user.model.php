@@ -8,11 +8,18 @@ class UserModel {
     }
  
     public function getUserByUsername($username) {    
-        $query = $this->db->prepare("SELECT * FROM usuario WHERE username = ?");
+        $query = $this->db->prepare("SELECT * FROM usuarios WHERE username = ?");
         $query->execute([$username]);
     
         $user = $query->fetch(PDO::FETCH_OBJ);
     
         return $user;
+    }
+
+    //yo pienso que la contraseña deberia hashearla el controlador.
+    //asi que la contraseña no se hashea aca, tiene que llegar hasheada.
+    public function addUser($username, $password, $role) {
+        $query = $this->db->prepare('INSERT INTO usuarios(username, password, role) VALUES(?, ?, ?)');
+        $query->execute([$username, $password, $role]);
     }
 }
