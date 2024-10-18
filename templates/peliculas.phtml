@@ -1,0 +1,40 @@
+<div class="contenedorLista">
+    <ul class="list-generos">
+        <li class="generos-peliculas btn btn-primary" id="0">Todos</li> 
+        <?php foreach ($generos as $genero) : ?>
+            <li class="generos-peliculas btn btn-primary" id="<?php echo $genero->id ?>"><?php echo $genero->nombre?></li> 
+        <?php endforeach ?>
+    </ul>
+</div>
+
+<div class="container-cards">
+    <?php foreach ($peliculas as $pelicula) : ?>
+        <div class="card" categoryID="<?= $pelicula->id_genero ?>">
+            <div class="card-header">
+                <?php
+                $i = 0;
+                $var = false;
+                while ($var == false && $i < count($generos)) {
+                    if ($pelicula->id_genero == $generos[$i]->id) {
+                        $var = true; ?>
+                        <p><?= $generos[$i]->nombre ?></p>
+                <?php
+                    }
+                    $i++;
+                } ?>
+            </div>
+            <div class="card-img">
+                <img class="img-pelicula" src="img/<?= $pelicula->titulo ?>.png" alt="<?= $pelicula->titulo ?>">
+            </div>
+            <div class="card-info">
+                <div class="card-description">
+                    <p class="card-peliculaName"><?= $pelicula->titulo ?></p>
+                    <p class="card-director"><?= $pelicula->director ?></p>
+                    <button class="btn btn-primary">Ver</button>
+                </div>
+            </div>
+        </div>
+    <?php endforeach ?>
+</div>
+
+<script src="js/peliculas.js"></script>

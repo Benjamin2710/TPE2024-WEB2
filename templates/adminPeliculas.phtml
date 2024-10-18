@@ -1,0 +1,136 @@
+<?php require 'templates/header.phtml';?>
+<main class="main-administrar">
+    <div class="administrar-info">
+        <div class="logo-info">
+            <i class="fa-solid fa-info fa-sm"></i>
+        </div>
+        <h4>ADMINISTRADOR:</h4>
+        </div>
+</main>
+
+<div class="form-type">
+    <input class="btns-admin" type="button" value="Editar" number="1">
+    <input class="btns-admin" type="button" value="Agregar" number="2">
+    <input class="btns-admin" type="button" value="Eliminar" number="3">
+</div>
+
+<form action="agregarPelicula" method="POST" class="form" id="form-peliculas">
+    <p class="form-title" id="form-title-peliculas">Agregar Pelicula</p>
+
+    <div class="noMostrar" id="select-ids-peliculas">
+        <label for="id">Seleccione el id de un film</label>
+        <select name="id">
+            <?php foreach ($peliculas as $pelicula) : ?>
+                <option value="<?= $pelicula->id ?>"><?= $pelicula->id  ?></option>
+            <?php endforeach ?>
+        </select>
+    </div>
+
+    <div class="" id="cont-form-peliculas">
+        <div class="form-input__container">
+            <label>Nombre del Film</label>
+            <input name="nombre_pelicula" type="text" class="form-control">
+        </div>
+
+        <div class="form-input__container">
+            <label>director</label>
+            <input type="text" name="director" class="form-control"></input>
+        </div>
+
+        <div class="form-select__conteiner select-width">
+            <label>Generos</label>
+            <select required name="id_genero" class="form-control">
+                <?php foreach ($generos as $genero) : ?>
+                    <option value="<?= $genero->id ?>"><?= $genero->id ?></option>
+                <?php endforeach ?>
+            </select>
+        </div>
+    </div>
+    <button action="administrar" type="submit" class="form-submit" id="btn-submit-pelicula">Enviar</button>
+</form>
+
+<div class="form-type">
+    <input class="btns-admin" type="button" value="Editar" number="4">
+    <input class="btns-admin" type="button" value="Agregar" number="5">
+    <input class="btns-admin" type="button" value="Eliminar" number="6">
+</div>
+
+<form action="agregarGenero" class="form" method="POST" id="form-genero">
+    <p class="form-title" id="form-title-generos">Agregar Genero</p>
+
+    <div class="noMostrar" id="select-ids-generos">
+        <label for="id_genero">Seleccione un genero</label>
+
+        <p id="p-eliminar-pelicula">Recuerde que para eliminar el genero, este no debe tener peliculas.</p>
+        <select name="id_genero">
+            <?php foreach ($generos as $genero) : ?>
+                <option value="<?= $genero->id_genero ?>"><?= $genero->nombre ?></option>
+            <?php endforeach ?>
+        </select>
+    </div>
+
+    <div class="" id="cont-form-genero">
+        <div class="form-input__container">
+            <label>Nombre del genero</label>
+            <input name="nombre" type="text" class="form-control">
+        </div>
+        <div class="form-input__container">
+            <label>Descripcion</label>
+            <input name="nombre" type="text" class="form-control">
+        </div>
+        <div class="form-input__container">
+            <label>Calificacion por edad</label>
+            <input name="nombre" type="number" class="form-control">
+        </div>
+    </div>
+
+    <button action="administrar" type="submit" class="form-submit" id="btn-submit-generos">Enviar</button>
+</form>
+
+<div class="tabla-container">
+    <h3>Info de los Films</h3>
+    <p>Base de datos almacenada</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Director</th>
+                <th>Año</th>
+                <th>Descripcion</th>
+
+                <th>Genero</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($peliculas as $pelicula) : ?>
+                <tr>
+                    <td><?= $pelicula->id ?></td>
+                    <td><?= $pelicula->titulo ?></td>
+                    <td><?= $pelicula->director ?></td>
+                    <td><?= $pelicula->anio ?></td>
+                    <td>$<?= $pelicula->descripcion ?></td>
+                    <td><?= $pelicula->id_genero?></td>
+                    <td>
+                        <?php
+                        $i = 0;
+                        $var = false;
+                        while ($var == false && $i < count($generos)) {
+                            if ($pelicula->id_genero == $generos[$i]->id) {
+                                $var = true;
+                                echo "(" . $generos[$i]->id . ")" . $generos[$i]->nombre;
+                            }
+                            $i++;
+                        } ?>
+                    </td>
+                </tr>
+            <?php endforeach ?>
+        </tbody>
+    </table>
+</div>
+</main>
+<script src="js/administrar.js"></script>
+<script src="js/main.js"></script>
+</body>
+
+</html>
