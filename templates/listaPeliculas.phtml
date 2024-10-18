@@ -31,6 +31,9 @@
                 <a href="pelicula/<?= $pelicula->id ?>">
                     <img src="frontend/images/poster.jpg" alt="" srcset="">
                 </a>
+                <?php if ($this->res->user && $this->res->user->role == 'admin'): ?>
+                <button class="delete-button" onclick="deletePelicula(<?= $pelicula->id ?>)">X</button>
+                <?php endif; ?>
         </div>
     <?php endforeach ?>
     </div>
