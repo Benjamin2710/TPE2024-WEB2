@@ -28,11 +28,11 @@
     <div class="peliculas-container"><!-- peliculas -->
     <?php foreach($peliculas as $pelicula): ?>
         <div class="poster"><!-- pelicula -->
-                <a href="pelicula/<?= $pelicula->id ?>">
+                <a href="pelicula/<?= htmlspecialchars($pelicula->id)?>">
                     <img src="frontend/images/poster.jpg" alt="" srcset="">
                 </a>
                 <?php if ($this->res->user && $this->res->user->role == 'admin'): ?>
-                <button class="delete-button" onclick="deletePelicula(<?= $pelicula->id ?>)">X</button>
+                    <a href="eliminarPelicula/<?= htmlspecialchars($pelicula->id)?>"><button class="delete-button">X</button></a>
                 <?php endif; ?>
         </div>
     <?php endforeach ?>
