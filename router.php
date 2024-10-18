@@ -19,14 +19,6 @@ if (!empty( $_GET['action'])) {
 $res = new Response();
 AuthHelper::sessionAuth($res);
 
-// tabla de ruteo todo (robado del profe por eso dice task)
-
-// listar  -> TaskController->showTask();
-// nueva  -> TaskController->addTask();
-// eliminar/:ID  -> TaskController->deleteTask($id);
-// finalizar/:ID -> TaskController->finishTask($id);
-// ver/:ID -> TaskController->view($id); COMPLETAR
-
 // parsea la accion para separar accion real de parametros
 $params = explode('/', $action);
 
@@ -78,6 +70,10 @@ switch ($params[0]) {
         $controller = new AuthController();
         $controller->showLogin();
         break;
+    case 'logout': 
+        $controller = new AuthController();
+        $controller->logout();
+        break;
     case 'auth':
         $controller = new AuthController();
         $controller->login();
@@ -86,3 +82,7 @@ switch ($params[0]) {
         $controller->showError("404 Page Not Found");
         break;
 }
+
+echo '<pre>';
+var_dump($res);
+echo '</pre>';
