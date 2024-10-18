@@ -24,11 +24,11 @@ $params = explode('/', $action);
 
 switch ($params[0]) {
     case 'peliculas':
-        $controller = new PeliculasController();
+        $controller = new PeliculasController($res);
         $controller->showPeliculas();
         break;
     case 'pelicula':
-        $controller = new PeliculasController();
+        $controller = new PeliculasController($res);
         if (!isset($params[1]) || empty($params[1])) {
             $controller->showError("Falta el id de la pelicula");
         }else{
@@ -55,11 +55,11 @@ switch ($params[0]) {
         $controller->insertarPelicula();
         break;
     case 'generos':
-        $controller = new PeliculasController(); // Corrección de typo
+        $controller = new PeliculasController($res); // Corrección de typo
         $controller->showGeneros();
         break;
     case 'signup':
-        $controller = new AuthController();
+        $controller = new AuthController($res);
         $controller->showSignup();
         break;
     case 'signupUser':
@@ -67,7 +67,7 @@ switch ($params[0]) {
         $controller->signup();
         break;
     case 'login':
-        $controller = new AuthController();
+        $controller = new AuthController($res);
         $controller->showLogin();
         break;
     case 'logout': 
@@ -85,4 +85,9 @@ switch ($params[0]) {
 
 echo '<pre>';
 var_dump($res);
+echo '</pre>';
+
+echo '<br>';
+echo '<pre>';
+var_dump($_SESSION);
 echo '</pre>';

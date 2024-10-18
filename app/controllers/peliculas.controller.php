@@ -7,11 +7,14 @@ require_once __DIR__ . '/../models/generos.model.php';
 class PeliculasController {
     private $model;
     private $view;
+    private $generosModel;
+    private $res;
 
-    public function __construct() {
+    public function __construct($res = null) {
         $this->model = new PeliculasModel();
         $this->generosModel = new GenerosModel();
-        $this->view = new PeliculasView();
+        $this->view = new PeliculasView($res);
+        $this->res = $res;
     }
 
     public function showPeliculas() {
@@ -98,5 +101,9 @@ class PeliculasController {
         } else {
             $this->view->showError("No se encontraron géneros.");
         }
+    }
+
+    public function showError($error) {
+        return $this->view->showError($error);
     }
 }

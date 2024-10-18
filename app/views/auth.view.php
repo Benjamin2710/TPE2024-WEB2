@@ -1,7 +1,11 @@
 <?php
 
 class AuthView {
-    private $user = null;
+    private $res;
+
+    public function __construct($res = null) {
+        $this->res = $res;
+    }
 
     public function showLogin($error = '') {
         require 'templates/formLogin.phtml';

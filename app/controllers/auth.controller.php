@@ -7,9 +7,9 @@ class AuthController {
     private $model;
     private $view;
 
-    public function __construct() {
+    public function __construct($res = null) {
         $this->model = new UserModel();
-        $this->view = new AuthView();
+        $this->view = new AuthView($res);
     }
 
     public function showLogin() {
@@ -31,7 +31,7 @@ class AuthController {
         $user = $this->model->getUserByUsername($username);
         if ($user && password_verify($password, $user->password)) {
             AuthHelper::login($user);
-            header('Location: ' . BASE_URL . 'home');
+            header('Location: ' . BASE_URL . 'peliculas');
         } else {
             return $this->view->showLogin('Credenciales incorrectas');
         }

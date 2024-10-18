@@ -19,6 +19,10 @@
                 <li><a href="<?= BASE_URL ?>peliculas">Peliculas</a></li>
                 <li><a href="<?= BASE_URL ?>generos">Categorias</a></li>
             </ul>
-            <div class="btnLogin"><a href="<?= BASE_URL ?>login">Log In</a></div>
+            <?php if ($this->res->user): ?>
+                <div class="btnLogin"><a href="<?= BASE_URL ?>logout">Log Out</a></div>
+            <?php else: ?>
+                <div class="btnLogin"><a href="<?= BASE_URL ?>login">Log In</a></div>
+            <?php endif; ?>
         </nav>
     </header>
