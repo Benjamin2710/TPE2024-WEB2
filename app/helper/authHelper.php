@@ -10,8 +10,9 @@ class AuthHelper {
 
     public static function login($usuario) {
         self::init();
-        $_SESSION['id_usuario'] = $usuario->id_usuario;
-        $_SESSION['usuario'] = $usuario->usuario; 
+        $_SESSION['id_usuario'] = $usuario->id;
+        $_SESSION['username'] = $usuario->username;
+        $_SESSION['role'] = $usuario->role;
     }
 
     public static function logout() {
@@ -36,8 +37,9 @@ class AuthHelper {
         self::init();
         if (isset($_SESSION['id_usuario'])) {
             $res->user = new stdClass();
+            $res->user->username = $_SESSION['username'];
             $res->user->id = $_SESSION['id_usuario'];
-            $res->user->email = $_SESSION['email_usuario'];
+            $res->user->role = $_SESSION['role'];
         }
     }
 
