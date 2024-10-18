@@ -1,7 +1,20 @@
 <?php    $title = htmlspecialchars($pelicula->titulo);?>
+<?php 
+function getGeneroNombre($generos, $id_genero) {
+    foreach ($generos as $genero) {
+        if ($genero->id == $id_genero) {
+            return $genero->nombre;
+        }
+    }
+    return 'Género no encontrado';
+} 
+?>
 <?php require 'templates/layout/header.phtml'; ?>
 
 <div class="item">
+    <?php if ($this->res->user && $this->res->user->role == 'admin'): ?>
+        <button id="edit-button" ">Editar</button>
+    <?php endif; ?>
     <div class="item-image">
         <img src="<?= BASE_URL ?>frontend/images/poster.jpg" alt="">
     </div>
@@ -12,5 +25,26 @@
         <p> <?= htmlspecialchars($pelicula->descripcion) ?> </p>
     </div>
 </div>
+<?php if ($this->res->user && $this->res->user->role == 'admin'): ?> 
+    <form action="editarPelicula" method="post" id="formPelicula" class="hide">
+    <input type="text" name="titulo" id="titulo" placeholder="Título de la película..." value="<?= htmlspecialchars($pelicula->titulo) ?>" required>
+    <input type="text" name="director" id="director" placeholder="Director..." value="<?= htmlspecialchars($pelicula->director) ?>" required>
+    <input type="number" name="anio" id="anio" placeholder="Año..." value="<?= htmlspecialchars($pelicula->anio) ?>" required>
+    <select id="input-genero" name="id_genero">
+    <option value="<?= htmlspecialchars($pelicula->id_genero) ?>" selected>
+        <?= htmlspecialchars(getGeneroNombre($generos, $pelicula->id_genero)) ?>
+    </option>
+        <?php foreach($generos as $genero): ?>
+            <?php if ($genero->id == $pelicula->id_genero) continue; ?>
+            <option value="<?= $genero->id?>"><?= $genero->nombre ?></option>
+        <?php endforeach ?>
+    </select>
+    <textarea name="descripcion" id="descripcion" placeholder="Descripcion..."><?= htmlspecialchars($pelicula->descripcion) ?></textarea>
+    <input type="submit" value="Enviar" id="btnSubmit">
+</form>
+<script src="<?= BASE_URL ?>frontend/js/item.js"></script>
+<?php require 'templates/layout/footer.phtml'; ?>
+<?php endif; ?>
+
 <script src="<?= BASE_URL ?>frontend/js/item.js"></script>
 <?php require 'templates/layout/footer.phtml'; ?>

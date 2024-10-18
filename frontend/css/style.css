@@ -16,7 +16,7 @@ a{
     position: relative;
 }
 
-.delete-button {
+#delete-button {
     position: absolute;
     top: 5px;
     right: 5px;
@@ -32,7 +32,7 @@ a{
     border: 1px solid black;
 }
 
-.delete-button:hover {
+#delete-button:hover {
     background-color: darkred;
 }
 
@@ -118,6 +118,7 @@ a{
     justify-content:flex-start;
     border-radius: 30px;
     border: 2px solid black;
+    position: relative;
 }
 
 .item-image{
@@ -136,6 +137,26 @@ a{
     margin: 10px 30px;
 }
 
+#edit-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: cornflowerblue;
+    color: white;
+    border: 1px solid black;
+    border-radius: 15px;
+    width: 100px;
+    height: auto;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 25px;
+    text-align: center;
+    padding: 0;
+}
+
+#edit-button:hover {
+    background-color: darkblue;
+}
 #formPelicula{
     background-color: grey;
     width: 80%;

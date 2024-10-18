@@ -35,6 +35,11 @@ switch ($params[0]) {
             $controller->showPelicula($params[1]);
         }
         break;
+    case 'editarPelicula': // falta hacer la funcion en controller
+        AuthHelper::verifyAdmin($res);
+        $controller = new PeliculasController();
+        $controller->editarPelicula();
+        break;
     case 'eliminarPelicula':
         AuthHelper::verifyAdmin($res);
         $controller = new PeliculasController();

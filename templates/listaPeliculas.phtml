@@ -32,7 +32,7 @@
                     <img src="frontend/images/poster.jpg" alt="" srcset="">
                 </a>
                 <?php if ($this->res->user && $this->res->user->role == 'admin'): ?>
-                    <a href="eliminarPelicula/<?= htmlspecialchars($pelicula->id)?>"><button class="delete-button">X</button></a>
+                    <a href="eliminarPelicula/<?= htmlspecialchars($pelicula->id)?>"><button id="delete-button">X</button></a>
                 <?php endif; ?>
         </div>
     <?php endforeach ?>

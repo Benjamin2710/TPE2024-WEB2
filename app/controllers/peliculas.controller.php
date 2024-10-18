@@ -25,7 +25,8 @@ class PeliculasController {
     public function showPelicula($id) {
         if($this->peliculaExists($id)){
             $pelicula = $this->model->getPelicula($id);
-            return $this->view->showPelicula($pelicula);
+            $generos = $this->generosModel->getGeneros();
+            return $this->view->showPelicula($pelicula, $generos);
         }else{
             return $this->view->showError('Pelicula no encontrada');
         }

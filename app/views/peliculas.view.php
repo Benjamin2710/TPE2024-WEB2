@@ -12,15 +12,12 @@ class PeliculasView {
         require 'templates/listaPeliculas.phtml';
     }
 
-    public function showPelicula($pelicula) {
+    public function showPelicula($pelicula, $generos) {
         require 'templates/item.phtml';
     }
 
     public function showFormAltaPelicula($generos) {
         require 'templates/formAltaPelicula.phtml';
-        echo "<pre>";
-        var_dump($generos);
-        echo "</pre>";
     }
 
     public function showError($error) {
