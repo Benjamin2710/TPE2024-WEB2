@@ -62,6 +62,10 @@ switch ($params[0]) {
         $controller = new PeliculasController();
         $controller->insertarPelicula();
         break;
+    case 'generos':
+        $controller = new PeliculasController(); // Corrección de typo
+        $controller->showGeneros();
+        break;
     case 'signup':
         $controller = new AuthController();
         $controller->showSignup();
