@@ -26,7 +26,7 @@ function getGeneroNombre($generos, $id_genero) {
     </div>
 </div>
 <?php if ($this->res->user && $this->res->user->role == 'admin'): ?> 
-    <form action="editarPelicula" method="post" id="formPelicula" class="hide">
+<form action="<?= BASE_URL ?>editarPelicula" method="post" id="formPelicula" class="hidden">
     <input type="text" name="titulo" id="titulo" placeholder="Título de la película..." value="<?= htmlspecialchars($pelicula->titulo) ?>" required>
     <input type="text" name="director" id="director" placeholder="Director..." value="<?= htmlspecialchars($pelicula->director) ?>" required>
     <input type="number" name="anio" id="anio" placeholder="Año..." value="<?= htmlspecialchars($pelicula->anio) ?>" required>
@@ -42,8 +42,6 @@ function getGeneroNombre($generos, $id_genero) {
     <textarea name="descripcion" id="descripcion" placeholder="Descripcion..."><?= htmlspecialchars($pelicula->descripcion) ?></textarea>
     <input type="submit" value="Enviar" id="btnSubmit">
 </form>
-<script src="<?= BASE_URL ?>frontend/js/item.js"></script>
-<?php require 'templates/layout/footer.phtml'; ?>
 <?php endif; ?>
 
 <script src="<?= BASE_URL ?>frontend/js/item.js"></script>

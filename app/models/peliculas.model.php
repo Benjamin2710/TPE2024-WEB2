@@ -33,9 +33,9 @@ class PeliculasModel {
         $query->execute([$id]);
     }
 
-    public function editarPelicula($id, $titulo, $descripcion, $director, $id_genero) {
-        $query = $this->db->prepare('UPDATE peliculas SET titulo=?, descripcion=?, director=?, id_genero=? WHERE id=?');
-        $query->execute([$titulo, $descripcion, $director, $id_genero, $id]);
+    public function editarPelicula($id, $titulo, $descripcion, $director, $anio, $id_genero) {
+        $query = $this->db->prepare('UPDATE peliculas SET titulo=?, descripcion=?, director=?, anio=?, id_genero=? WHERE id=?');
+        $query->execute([$titulo, $descripcion, $director, $anio, $id_genero, $id]);
     }
 
     public function generoExists($id) {

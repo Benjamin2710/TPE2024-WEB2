@@ -80,7 +80,7 @@ switch ($params[0]) {
         $controller->logout();
         break;
     case 'auth':
-        $controller = new AuthController();
+        $controller = new AuthController($res);
         $controller->login();
     default: 
         $controller = new PeliculasController();
@@ -88,11 +88,6 @@ switch ($params[0]) {
         break;
 }
 
-echo '<pre>';
-var_dump($res);
-echo '</pre>';
-
-echo '<br>';
 echo '<pre>';
 var_dump($_SESSION);
 echo '</pre>';

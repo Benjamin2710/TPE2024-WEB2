@@ -24,6 +24,9 @@ class PeliculasController {
 
     public function showPelicula($id) {
         if($this->peliculaExists($id)){
+            if($this->res->user && $this->res->user->role == 'admin'){
+                $_SESSION['ultima_pelicula_mostrada'] = $id;
+            }
             $pelicula = $this->model->getPelicula($id);
             $generos = $this->generosModel->getGeneros();
             return $this->view->showPelicula($pelicula, $generos);
@@ -63,6 +66,37 @@ class PeliculasController {
 
 
         $id = $this->model->insertarPelicula($titulo, $descripcion, $director, $anio, $id_genero);
+        header('Location: ' . BASE_URL . 'pelicula/' . $id); //se redirige a la vista de la película recién insertada
+    }
+
+    public function editarPelicula() {
+        if (!isset($_SESSION['ultima_pelicula_mostrada']) || empty($_SESSION['ultima_pelicula_mostrada'])) {
+            return $this->view->showError('ERROR: No se puede editar la película');
+        }
+        if (!isset($_POST['titulo']) || empty($_POST['titulo'])) {
+            return $this->view->showError('Falta completar el título');
+        }
+        if (!isset($_POST['anio']) || empty($_POST['anio'])) {
+            return $this->view->showError('Falta completar el año');
+        }
+        if (!isset($_POST['descripcion']) || empty($_POST['descripcion'])) {
+            return $this->view->showError('Falta completar la descripción');
+        }
+        if (!isset($_POST['director']) || empty($_POST['director'])) {
+            return $this->view->showError('Falta completar el director');
+        }
+        if (!isset($_POST['id_genero']) || empty($_POST['id_genero'])) {
+            return $this->view->showError('Falta completar el género');
+        }
+
+        $titulo = $_POST['titulo'];
+        $descripcion = $_POST['descripcion'];
+        $director = $_POST['director'];
+        $anio = $_POST['anio'];
+        $id_genero = $_POST['id_genero'];
+        $id = $_SESSION['ultima_pelicula_mostrada'];
+
+        $this->model->editarPelicula($id, $titulo, $descripcion, $director, $anio, $id_genero);
         header('Location: ' . BASE_URL . 'pelicula/' . $id); //se redirige a la vista de la película recién insertada
     }
 
