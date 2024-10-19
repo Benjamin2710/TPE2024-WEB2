@@ -1,12 +1,7 @@
 <?php
-require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/model.php';
 
-class GenerosModel {
-    private $db;
-
-    public function __construct() {
-       $this->db = new PDO('mysql:host=localhost;dbname=db_peliculas;charset=utf8', 'root', '');
-    }
+class GenerosModel extends Model {
 
     public function getGeneros() {
         $query = $this->db->prepare('SELECT * FROM generos');
