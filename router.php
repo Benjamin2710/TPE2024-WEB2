@@ -50,7 +50,7 @@ switch ($params[0]) {
             $controller->borrarPelicula($params[1]);
         }
         break;
-    case 'FormularioAltaPelicula':
+    case 'nuevaPelicula':
         AuthHelper::verifyAdmin($res);
         $controller = new PeliculasController($res);
         $controller->showFormAltaPelicula();

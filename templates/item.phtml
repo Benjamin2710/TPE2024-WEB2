@@ -12,7 +12,7 @@
     <div class="item-info">
         <h1> <?= htmlspecialchars($pelicula->titulo) ?> </h1>
         <h2> <?= htmlspecialchars($pelicula->director) ?> </h2>
-        <h3> <?= htmlspecialchars($pelicula->anio) ?> </h3>
+        <h3> <?= htmlspecialchars($pelicula->anio) ?> - <?= htmlspecialchars(getGeneroNombre($generos, $pelicula->id_genero)) ?> </h3>
         <p> <?= htmlspecialchars($pelicula->descripcion) ?> </p>
     </div>
 </div>

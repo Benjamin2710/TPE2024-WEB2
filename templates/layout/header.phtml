@@ -15,9 +15,12 @@
     <header>
         <nav>
             <ul>
-                <li><a href="<?= BASE_URL ?>">Home</a></li>
-                <li><a href="<?= BASE_URL ?>peliculas">Peliculas</a></li>
-                <li><a href="<?= BASE_URL ?>generos">Categorias</a></li>
+                <li><a href="<?= htmlspecialchars(BASE_URL) ?>">Home</a></li>
+                <li><a href="<?= htmlspecialchars(BASE_URL) ?>peliculas">Peliculas</a></li>
+                <li><a href="<?= htmlspecialchars(BASE_URL) ?>generos">Categorías</a></li>
+                <?php if ($this->res->user && $this->res->user->role == 'admin'): ?> 
+                    <li class="btn-agregar-pelicula"><a href="<?= htmlspecialchars(BASE_URL) ?>nuevaPelicula">Agregar pelicula</a></li>
+                <?php endif; ?>
             </ul>
             <?php if ($this->res->user): ?>
                 <div class="btnLogin"><a href="<?= BASE_URL ?>logout">Log Out</a></div>
