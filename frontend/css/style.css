@@ -140,18 +140,26 @@ a{
 #edit-button {
     position: absolute;
     top: 15px;
-    right: 15px;
+    right: 120px;
     background-color: cornflowerblue;
     color: white;
     border: 1px solid black;
     border-radius: 15px;
     width: 100px;
-    height: auto;
+    height: 30px;
     cursor: pointer;
     font-size: 14px;
     line-height: 25px;
     text-align: center;
     padding: 0;
+}
+
+.item #delete-button {
+    top: 15px;
+    right: 15px;
+    width: 100px;
+    height: 30px;
+    border-radius: 15px;
 }
 
 #edit-button:hover {
