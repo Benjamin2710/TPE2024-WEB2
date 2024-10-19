@@ -5,6 +5,7 @@ require_once 'app/controllers/auth.controller.php';
 require_once 'app/controllers/user.controller.php';
 require_once 'app/helper/authHelper.php';
 require_once 'libs/response.php';
+require_once 'libs/funciones.php';
 
 
 // base_url para redirecciones y base tag
@@ -35,7 +36,7 @@ switch ($params[0]) {
             $controller->showPelicula($params[1]);
         }
         break;
-    case 'editarPelicula': // falta hacer la funcion en controller
+    case 'editarPelicula':
         AuthHelper::verifyAdmin($res);
         $controller = new PeliculasController();
         $controller->editarPelicula();
@@ -51,7 +52,7 @@ switch ($params[0]) {
         break;
     case 'FormularioAltaPelicula':
         AuthHelper::verifyAdmin($res);
-        $controller = new PeliculasController();
+        $controller = new PeliculasController($res);
         $controller->showFormAltaPelicula();
         break;
     case 'insertarPelicula':
@@ -88,6 +89,5 @@ switch ($params[0]) {
         break;
 }
 
-echo '<pre>';
-var_dump($_SESSION);
-echo '</pre>';
+test_var($res);
+test_var($_SESSION);

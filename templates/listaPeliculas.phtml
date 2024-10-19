@@ -29,7 +29,7 @@
     <?php foreach($peliculas as $pelicula): ?>
         <div class="poster"><!-- pelicula -->
                 <a href="pelicula/<?= htmlspecialchars($pelicula->id)?>">
-                    <img src="frontend/images/poster.jpg" alt="" srcset="">
+                    <img src="<?= htmlspecialchars(BASE_URL . '/frontend/images/' .$pelicula->path_img) ?>" alt="" srcset="">
                 </a>
                 <?php if ($this->res->user && $this->res->user->role == 'admin'): ?>
                     <a href="eliminarPelicula/<?= htmlspecialchars($pelicula->id)?>"><button id="delete-button">X</button></a>

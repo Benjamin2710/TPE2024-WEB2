@@ -1,6 +1,6 @@
 <?php    $title = 'Nueva pelicula';?>
 <?php require 'templates/layout/header.phtml'; ?>
-<form action="insertarPelicula" method="post" id="formPelicula">
+<form action="insertarPelicula" method="post" id="formPelicula" enctype="multipart/form-data">
     <input type="text" name="titulo" id="titulo" placeholder="Título de la película..." required>
     <input type="text" name="director" id="director" placeholder="Director..." required>
     <input type="number" name="anio" id="anio" placeholder="Año..." required>
@@ -11,6 +11,7 @@
         <?php endforeach ?>
     </select>
     <textarea name="descripcion" id="descripcion" placeholder="Descripcion..."></textarea>
+    <input type="file" name="image" id="image-to-upload">
     <input type="submit" value="Enviar" id="btnSubmit">
 </form>
 <?php require 'templates/layout/footer.phtml'; ?>

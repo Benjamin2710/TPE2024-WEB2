@@ -1,14 +1,4 @@
 <?php    $title = htmlspecialchars($pelicula->titulo);?>
-<?php 
-function getGeneroNombre($generos, $id_genero) {
-    foreach ($generos as $genero) {
-        if ($genero->id == $id_genero) {
-            return $genero->nombre;
-        }
-    }
-    return 'Género no encontrado';
-} 
-?>
 <?php require 'templates/layout/header.phtml'; ?>
 
 <div class="item">
@@ -17,7 +7,7 @@ function getGeneroNombre($generos, $id_genero) {
         <a href="eliminarPelicula/<?= htmlspecialchars($pelicula->id)?>"><button id="delete-button">Borrar</button></a>
     <?php endif; ?>
     <div class="item-image">
-        <img src="<?= BASE_URL ?>frontend/images/poster.jpg" alt="">
+        <img src="<?= htmlspecialchars(BASE_URL . '/frontend/images/' .$pelicula->path_img) ?>" alt="">
     </div>
     <div class="item-info">
         <h1> <?= htmlspecialchars($pelicula->titulo) ?> </h1>
@@ -29,7 +19,7 @@ function getGeneroNombre($generos, $id_genero) {
 
 
 <?php if ($this->res->user && $this->res->user->role == 'admin'): ?> 
-<form action="<?= BASE_URL ?>editarPelicula" method="post" id="formPelicula" class="hidden">
+<form action="<?= BASE_URL ?>editarPelicula" method="post" id="formPelicula" enctype="multipart/form-data" class="hidden">
     <input type="text" name="titulo" id="titulo" placeholder="Título de la película..." value="<?= htmlspecialchars($pelicula->titulo) ?>" required>
     <input type="text" name="director" id="director" placeholder="Director..." value="<?= htmlspecialchars($pelicula->director) ?>" required>
     <input type="number" name="anio" id="anio" placeholder="Año..." value="<?= htmlspecialchars($pelicula->anio) ?>" required>
@@ -43,6 +33,7 @@ function getGeneroNombre($generos, $id_genero) {
         <?php endforeach ?>
     </select>
     <textarea name="descripcion" id="descripcion" placeholder="Descripcion..."><?= htmlspecialchars($pelicula->descripcion) ?></textarea>
+    <input type="file" name="image" id="image-to-upload">
     <input type="submit" value="Enviar" id="btnSubmit">
 </form>
 <?php endif; ?>

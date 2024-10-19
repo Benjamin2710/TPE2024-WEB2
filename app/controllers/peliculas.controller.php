@@ -17,6 +17,13 @@ class PeliculasController {
         $this->res = $res;
     }
 
+    private function moveImage(){
+        $newFileName = uniqid("", true) . "." . strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
+        $filePath =$_SERVER['DOCUMENT_ROOT']."/TPE/TPE2024-WEB2/frontend/images/" . $newFileName;
+        move_uploaded_file($_FILES['image']['tmp_name'], $filePath);
+        return $newFileName;
+    }
+
     public function showPeliculas() {
         $peliculas = $this->model->getPeliculas();
         return $this->view->showPeliculas($peliculas);
@@ -28,7 +35,7 @@ class PeliculasController {
                 $_SESSION['ultima_pelicula_mostrada'] = $id;
             }
             $pelicula = $this->model->getPelicula($id);
-            $generos = $this->generosModel->getGeneros();
+            $generos = $this->generosModel->getNombresIds();
             return $this->view->showPelicula($pelicula, $generos);
         }else{
             return $this->view->showError('Pelicula no encontrada');
@@ -37,7 +44,7 @@ class PeliculasController {
     }
 
     public function showFormAltaPelicula() {
-        $generos = $this->generosModel->getGeneros();
+        $generos = $this->generosModel->getNombresIds();
         return $this->view->showFormAltaPelicula($generos);
     }
     
@@ -57,15 +64,23 @@ class PeliculasController {
         if (!isset($_POST['id_genero']) || empty($_POST['id_genero'])) {
             return $this->view->showError('Falta completar el género');
         }
-
+ 
         $titulo = $_POST['titulo'];
         $descripcion = $_POST['descripcion'];
         $director = $_POST['director'];
         $anio = $_POST['anio'];
         $id_genero = $_POST['id_genero'];
-
-
-        $id = $this->model->insertarPelicula($titulo, $descripcion, $director, $anio, $id_genero);
+        $id = null;
+        $filePath = null;
+        
+        if($_FILES['image']['type'] == "image/jpg" || 
+        $_FILES['image']['type'] == "image/jpeg" || 
+        $_FILES['image']['type'] == "image/png"){ 
+            $filePath = $this->moveImage();
+            $id = $this->model->insertarPelicula($titulo, $descripcion, $director, $anio, $id_genero, $filePath);
+        }else{
+            $id = $this->model->insertarPelicula($titulo, $descripcion, $director, $anio, $id_genero);
+        }
         header('Location: ' . BASE_URL . 'pelicula/' . $id); //se redirige a la vista de la película recién insertada
     }
 
@@ -96,6 +111,15 @@ class PeliculasController {
         $id_genero = $_POST['id_genero'];
         $id = $_SESSION['ultima_pelicula_mostrada'];
 
+        if($_FILES['image']['type'] == "image/jpg" || 
+        $_FILES['image']['type'] == "image/jpeg" || 
+        $_FILES['image']['type'] == "image/png"){
+            $filePath = $this->moveImage();
+            $this->model->editarPelicula($id, $titulo, $descripcion, $director, $anio, $id_genero, $filePath);
+        }else{
+            $this->model->editarPelicula($id, $titulo, $descripcion, $director, $anio, $id_genero);
+        }
+
         $this->model->editarPelicula($id, $titulo, $descripcion, $director, $anio, $id_genero);
         header('Location: ' . BASE_URL . 'pelicula/' . $id); //se redirige a la vista de la película recién insertada
     }
@@ -119,7 +143,7 @@ class PeliculasController {
     }
 
     private function generoExists($id) { //que lo haga generos model!!!
-        return $this->model->generoExists($id);
+        return $this->generosModel->generoExists($id);
     }
 
     private function peliculaExists($id) {
