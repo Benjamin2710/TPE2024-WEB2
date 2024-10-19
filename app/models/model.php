@@ -10,11 +10,10 @@ Class Model{
     }
 
     private function deploy(){
-        //completar deploy al final, asi tener la sql final
         $query = $this->db->query('SHOW TABLES');
         $tables = $query->fetchAll();
         if(count($tables) == 0) {
-            
+            $sql = file_get_contents(__DIR__ . '/db_peliculas.sql');
             $this->db->query($sql);
         }
     }

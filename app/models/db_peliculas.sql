@@ -26,7 +26,6 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `generos`
 --
-
 CREATE TABLE `generos` (
   `id` int(11) NOT NULL,
   `nombre` varchar(250) NOT NULL,
