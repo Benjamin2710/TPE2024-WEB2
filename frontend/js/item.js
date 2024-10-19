@@ -12,6 +12,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }else{
             scrollear = true;
         }
-        
     });
 });
