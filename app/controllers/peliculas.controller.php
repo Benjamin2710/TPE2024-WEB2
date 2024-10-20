@@ -163,6 +163,16 @@ class PeliculasController {
         test_var($generos);
     }
 
+    public function showGenero($id){
+        if($this->generoExists($id)){
+            $genero = $this->generosModel->getGenero($id);
+            $peliculas = $this->model->getPeliculasByGenero($id);
+            $this->view->showGenero($genero, $peliculas);
+        }else{
+            $this->view->showError("Género no encontrado");
+        }
+    }
+
     public function showError($error) {
         return $this->view->showError($error);
     }

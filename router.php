@@ -64,6 +64,14 @@ switch ($params[0]) {
         $controller = new PeliculasController($res); // Corrección de typo
         $controller->showGeneros();
         break;
+    case 'genero':
+        $controller = new PeliculasController($res);
+        if (!isset($params[1]) || empty($params[1])) {
+            $controller->showError("Falta el id del genero");
+        }else{
+            $controller->showGenero($params[1]);
+        }
+        break;
     case 'signup':
         $controller = new AuthController($res);
         $controller->showSignup();

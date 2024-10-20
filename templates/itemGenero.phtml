@@ -1,0 +1,12 @@
+<?php    $title = 'Categorias';?>
+<?php require 'templates/layout/header.phtml'; ?>
+
+<div class="genero-container">
+    <h1> <?= htmlspecialchars($genero->nombre)?> </h1>
+    <h3>Edad objetiva: <?= htmlspecialchars($genero->clasificacion_por_edad)?></h3>
+    <h2>Descripcion:</h2>
+    <p><?= htmlspecialchars($genero->descripcion)?></p>
+    <a href="peliculas/<?= htmlspecialchars($genero->nombre)?>"><p>Ver peliculas de <?= htmlspecialchars($genero->nombre)?></p></a>
+</div>
+
+<?php require 'templates/layout/footer.phtml'; ?>

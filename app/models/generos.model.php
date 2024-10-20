@@ -11,6 +11,14 @@ class GenerosModel extends Model {
         return $generos;
     }
 
+    public function getGenero($id) {
+        $query = $this->db->prepare('SELECT * FROM generos WHERE id = ?');
+        $query->execute([$id]);
+        $genero = $query->fetch(PDO::FETCH_OBJ); 
+    
+        return $genero;
+    }   
+
     public function getNombresIds() {
         $query = $this->db->prepare('SELECT id, nombre FROM generos');
         $query->execute();

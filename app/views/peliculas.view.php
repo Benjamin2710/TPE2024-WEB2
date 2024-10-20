@@ -29,4 +29,9 @@ class PeliculasView {
     public function showGeneros($generos){
         require 'templates/listaGeneros.phtml';
     }
+
+    public function showGenero($genero){
+        require 'templates/itemGenero.phtml';
+        test_var($genero);
+    }
 }
