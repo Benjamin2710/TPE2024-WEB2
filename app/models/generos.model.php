@@ -27,9 +27,15 @@ class GenerosModel extends Model {
         return $generos;
     }
 
-    public function generoExists($id) {
-        $query = $this->db->prepare('SELECT COUNT(*) FROM generos WHERE id = ?');
-        $query->execute([$id]);
+    public function generoExists($nombre) {
+        $query = $this->db->prepare('SELECT COUNT(*) FROM generos WHERE nombre = ?');
+        $query->execute([$nombre]);
         return $query->fetchColumn() > 0;
+    }
+
+    public function getIdByNombre($nombre) {
+        $query = $this->db->prepare('SELECT id FROM generos WHERE nombre = ?');
+        $query->execute([$nombre]);
+        return $query->fetch(PDO::FETCH_OBJ)->id;
     }
 }

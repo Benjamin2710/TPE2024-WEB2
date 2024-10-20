@@ -133,17 +133,18 @@ class PeliculasController {
         }
     }
 
-    public function showPeliculasByGenero($id_genero) {
-        if($this->generoExists($id_genero)){
-            $peliculas = $this->model->getPeliculasByGenero($id_genero);
+    public function showPeliculasByGenero($genero) {
+        $id = $this->generosModel->getIdByNombre($genero);
+        if($id){
+            $peliculas = $this->model->getPeliculasByGenero($id);
             return $this->view->showPeliculas($peliculas);
         }else{
-            return $this->view->showError('Género no encontrado');
+            return $this->view->showError('No se encontraron películas para el género seleccionado');
         }
     }
 
-    private function generoExists($id) { //que lo haga generos model!!!
-        return $this->generosModel->generoExists($id);
+    private function generoExists($nombre) { //que lo haga generos model!!!
+        return $this->generosModel->generoExists($nombre);
     }
 
     private function peliculaExists($id) {

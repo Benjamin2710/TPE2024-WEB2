@@ -25,8 +25,13 @@ $params = explode('/', $action);
 
 switch ($params[0]) {
     case 'peliculas':
-        $controller = new PeliculasController($res);
-        $controller->showPeliculas();
+        if (isset($params[1]) && !empty($params[1])) {
+            $controller = new PeliculasController($res);
+            $controller->showPeliculasByGenero($params[1]);
+        }else{
+            $controller = new PeliculasController($res);
+            $controller->showPeliculas();
+        }
         break;
     case 'pelicula':
         $controller = new PeliculasController($res);
