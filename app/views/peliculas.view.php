@@ -22,19 +22,11 @@ class PeliculasView {
 
     public function showError($error) {
    //     require 'templates/error.phtml';
-        echo "<pre>";
-        var_dump($error);
-        echo "</pre>";
+        test_var($error);
     }
      //prueba
     // Mostrar la lista de géneros
     public function showGeneros($generos){
-        require 'templates/layout/header.phtml';
-        echo "<h1>Lista de Géneros de Películas</h1>";
-        echo "<ul>";
-        foreach ($generos as $genero) {
-            echo "<li><strong>{$genero->nombre}</strong>: {$genero->descripcion} (Clasificación: {$genero->clasificacion_por_edad})</li>";
-        }
-        echo "</ul>";
+        require 'templates/listaGeneros.phtml';
     }
 }

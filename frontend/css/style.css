@@ -76,17 +76,17 @@ a{
     padding: 10px;
 }
 
-.lista-generos{
+.lista-generos-btn{
     display: flex;
     width: 90%;
     padding: 10px;
 }
 
-.lista-generos{
+.lista-generos-btn{
     list-style: none;
 }
 
-.lista-generos > li{
+.lista-generos-btn > li{
     margin: 0 10px;
     background-color: wheat;
     border-radius: 15px;
@@ -94,7 +94,7 @@ a{
     padding: 3px 9px 3px 4px;
 }
 
-.lista-generos > li:hover {
+.lista-generos-btn > li:hover {
     background-color: rgb(252, 67, 34); /* Cambia el color de fondo a rojo */
     cursor: pointer; /* Cambia el cursor a un dedo apuntando */
 }
@@ -306,4 +306,26 @@ nav .btnLogin {
 
 .hidden{
     display: none !important;
+}
+
+.lista-generos{
+    background-color: grey;
+    width: 80%;
+    margin: auto;
+    display:block;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 30px;
+    position: relative;
+    border: 2px solid black;
+    list-style: none;
+    padding: 10px 20px;
+}
+
+li.genero{
+    margin: 10px 0;
+    background-color: wheat;
+    border-radius: 15px;
+    border: 1px solid black;
+    padding: 3px 9px 3px 4px;
 }

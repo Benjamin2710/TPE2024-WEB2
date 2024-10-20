@@ -1,0 +1,16 @@
+<?php    $title = 'Categorias';?>
+<?php require 'templates/layout/header.phtml'; ?>
+
+    <ul class ="lista-generos">
+        <?php foreach ($generos as $genero) : ?>
+            <li class="genero">
+                <a href="genero/<?= htmlspecialchars($genero->id)?>">
+                    <h1><?php echo $genero->nombre; ?></h1>
+                    <h2>Descripcion:</h2>
+                    <p><?php echo $genero->descripcion; ?></p>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+
+<?php require 'templates/layout/footer.phtml'; ?>

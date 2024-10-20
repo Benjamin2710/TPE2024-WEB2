@@ -151,15 +151,16 @@ class PeliculasController {
     }
     //prueba
     // Mostrar todos los géneros
-    public function showGeneros()
-    {
-        $generos = $this->model->getGeneros();
-
+    public function showGeneros(){
+        $generos = $this->generosModel->getGeneros();
+        
         if ($generos) {
             $this->view->showGeneros($generos);
         } else {
             $this->view->showError("No se encontraron géneros.");
         }
+        
+        test_var($generos);
     }
 
     public function showError($error) {
