@@ -29,7 +29,6 @@ class PeliculasView {
 
     public function showGenero($genero){
         require 'templates/itemGenero.phtml';
-        test_var($genero);
     }
 
     public function showFormAltaGenero(){

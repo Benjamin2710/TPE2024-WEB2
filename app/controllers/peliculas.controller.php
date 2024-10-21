@@ -164,8 +164,6 @@ class PeliculasController {
         } else {
             $this->view->showError("No se encontraron géneros.");
         }
-        
-        test_var($generos);
     }
 
     public function showGenero($id){
