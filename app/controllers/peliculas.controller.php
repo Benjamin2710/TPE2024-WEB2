@@ -127,6 +127,7 @@ class PeliculasController {
         $anio = $_POST['anio'];
         $id_genero = $_POST['id_genero'];
         $id = $_SESSION['ultima_pelicula_mostrada'];
+        unset($_SESSION['ultima_pelicula_mostrada']);
 
         if($_FILES['image']['type'] == "image/jpg" || 
         $_FILES['image']['type'] == "image/jpeg" || 
@@ -150,10 +151,6 @@ class PeliculasController {
         }
     }
 
-    private function generoExists($nombre) { //que lo haga generos model!!!
-        return $this->generosModel->generoExists($nombre);
-    }
-
     private function peliculaExists($id) {
         return $this->model->peliculaExists($id);
     }
@@ -174,6 +171,9 @@ class PeliculasController {
     public function showGenero($id){
         $genero = $this->generosModel->getGenero($id);
         if($genero){
+            if($this->res->user && $this->res->user->role == 'admin'){
+                $_SESSION['ultimo_genero_mostrado'] = $id;
+            }
             $peliculas = $this->model->getPeliculasByGenero($id);
             $this->view->showGenero($genero, $peliculas);
         }else{
@@ -204,8 +204,14 @@ class PeliculasController {
     }
 
     public function eliminarGenero($id){
-        $this->generosModel->eliminarGenero($id);
-        header('Location: ' . BASE_URL . 'generos');
+        $peliculas = $this->model->getPeliculasByGenero($id);
+        if($peliculas){
+            return $this->view->showError('No se puede eliminar el género porque tiene películas asociadas');
+        }else{
+            $this->generosModel->eliminarGenero($id);
+            header('Location: ' . BASE_URL . 'generos');
+        }
+        
     }
 
     public function editarGenero(){
@@ -218,14 +224,17 @@ class PeliculasController {
         if (!isset($_POST['clasificacion_por_edad']) || empty($_POST['clasificacion_por_edad'])) {
             return $this->view->showError('Falta completar la descripción');
         }
-        if (!isset($_SESSION['ultima_genero_mostrado']) || empty($_POST['ultima_genero_mostrado'])) {
+        test_var($_SESSION['ultimo_genero_mostrado']);
+        if (!isset($_SESSION['ultimo_genero_mostrado']) || empty($_SESSION['ultimo_genero_mostrado'])) {
             return $this->view->showError('ERROR: No se puede editar el genero');
         }
 
         $nombre = $_POST['nombre'];
         $descripcion = $_POST['descripcion'];
         $clasificacion_por_edad = $_POST['clasificacion_por_edad'];
-        $id = $_SESSION['ultima_genero_mostrado'];
+        $id = $_SESSION['ultimo_genero_mostrado'];
+        unset($_SESSION['ultimo_genero_mostrado']);
+
 
         $this->generosModel->editarGenero($id, $nombre, $descripcion, $clasificacion_por_edad);
         header('Location: ' . BASE_URL . 'genero/' . $id);

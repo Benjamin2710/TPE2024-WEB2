@@ -126,5 +126,4 @@ switch ($params[0]) {
         break;
 }
 
-test_var($res);
 test_var($_SESSION);
