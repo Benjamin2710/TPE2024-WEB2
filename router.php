@@ -43,12 +43,12 @@ switch ($params[0]) {
         break;
     case 'editarPelicula':
         AuthHelper::verifyAdmin($res);
-        $controller = new PeliculasController();
+        $controller = new PeliculasController($res);
         $controller->editarPelicula();
         break;
     case 'eliminarPelicula':
         AuthHelper::verifyAdmin($res);
-        $controller = new PeliculasController();
+        $controller = new PeliculasController($res);
         if (!isset($params[1]) || empty($params[1])) {
             $controller->showError("Falta el id de la pelicula a eliminar");
         }else{
@@ -62,7 +62,7 @@ switch ($params[0]) {
         break;
     case 'insertarPelicula':
         AuthHelper::verifyAdmin($res);
-        $controller = new PeliculasController();
+        $controller = new PeliculasController($res);
         $controller->insertarPelicula();
         break;
     case 'generos':
@@ -79,12 +79,12 @@ switch ($params[0]) {
         break;
     case 'editarGenero':
         AuthHelper::verifyAdmin($res);
-        $controller = new PeliculasController();
+        $controller = new PeliculasController($res);
         $controller->editarGenero();
         break;
     case 'eliminarGenero':
         AuthHelper::verifyAdmin($res);
-        $controller = new PeliculasController();
+        $controller = new PeliculasController($res);
         if (!isset($params[1]) || empty($params[1])) {
             $controller->showError("Falta el id del genero a eliminar");
         }else{
@@ -93,7 +93,7 @@ switch ($params[0]) {
         break;
     case 'insertarGenero':
         AuthHelper::verifyAdmin($res);
-        $controller = new PeliculasController();
+        $controller = new PeliculasController($res);
         $controller->insertarGenero();
         break;
     case 'nuevoGenero':
@@ -106,7 +106,7 @@ switch ($params[0]) {
         $controller->showSignup();
         break;
     case 'signupUser':
-        $controller = new UserController();
+        $controller = new UserController($res);
         $controller->signup();
         break;
     case 'login':
@@ -114,16 +114,14 @@ switch ($params[0]) {
         $controller->showLogin();
         break;
     case 'logout': 
-        $controller = new AuthController();
+        $controller = new AuthController($res);
         $controller->logout();
         break;
     case 'auth':
         $controller = new AuthController($res);
         $controller->login();
     default: 
-        $controller = new PeliculasController();
+        $controller = new PeliculasController($res);
         $controller->showError("404 Page Not Found");
         break;
 }
-
-test_var($_SESSION);

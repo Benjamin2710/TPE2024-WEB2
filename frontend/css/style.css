@@ -376,3 +376,13 @@ li.genero{
     grid-column: 2 / span 2;
     grid-row: 4;
 }
+
+.error-container{
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    margin: 10px auto;
+    width: 80%;
+}

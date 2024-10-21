@@ -7,8 +7,6 @@ class PeliculasView {
         $this->res = $res;
     }
     public function showPeliculas($peliculas, $generos) {
-        // NOTA: el template va a poder acceder a todas las variables y constantes que tienen alcance en esta funcion
-        // require 'templates/lista_tareas.phtml';
         require 'templates/listaPeliculas.phtml';
     }
 
@@ -21,8 +19,7 @@ class PeliculasView {
     }
 
     public function showError($error) {
-   //     require 'templates/error.phtml';
-        test_var($error);
+        require 'templates/error.phtml';
     }
      //prueba
     // Mostrar la lista de géneros
