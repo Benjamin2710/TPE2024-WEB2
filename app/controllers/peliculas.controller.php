@@ -204,12 +204,8 @@ class PeliculasController {
     }
 
     public function eliminarGenero($id){
-        if($this->generosModel->generoExists($id)){
-            $this->generosModel->eliminarGenero($id);
-            header('Location: ' . BASE_URL . 'generos');
-        }else{
-            $this->view->showError("Género no encontrado");
-        }
+        $this->generosModel->eliminarGenero($id);
+        header('Location: ' . BASE_URL . 'generos');
     }
 
     public function editarGenero(){

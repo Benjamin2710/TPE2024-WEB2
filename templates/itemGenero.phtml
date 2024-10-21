@@ -4,7 +4,7 @@
 <div class="genero-container">
     <?php if ($this->res->user && $this->res->user->role == 'admin'): ?>
         <button id="edit-button" ">Editar</button>
-        <a href="eliminarGenero/<?= htmlspecialchars($genero->id)?>"><button id="delete-button">Borrar</button></a>
+        <a href="<?=htmlspecialchars(BASE_URL)?>eliminarGenero/<?= htmlspecialchars($genero->id)?>"><button id="delete-button">Borrar</button></a>
     <?php endif; ?>
     <h1> <?= htmlspecialchars($genero->nombre)?> </h1>
     <h3>Edad objetiva: <?= htmlspecialchars($genero->clasificacion_por_edad)?></h3>

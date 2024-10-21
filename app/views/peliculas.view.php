@@ -36,6 +36,6 @@ class PeliculasView {
     }
 
     public function showFormAltaGenero(){
-        require 'templates/formAltaGenero.phtml';
+        require 'templates/formNuevoGenero.phtml';
     }
 }

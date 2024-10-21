@@ -4,7 +4,7 @@
 <div class="item">
     <?php if ($this->res->user && $this->res->user->role == 'admin'): ?>
         <button id="edit-button" ">Editar</button>
-        <a href="eliminarPelicula/<?= htmlspecialchars($pelicula->id)?>"><button id="delete-button">Borrar</button></a>
+        <a href="<?=htmlspecialchars(BASE_URL)?>eliminarPelicula/<?= htmlspecialchars($pelicula->id)?>"><button id="delete-button">Borrar</button></a>
     <?php endif; ?>
     <div class="item-image">
         <img src="<?= htmlspecialchars(BASE_URL . '/frontend/images/' .$pelicula->path_img) ?>" alt="">
