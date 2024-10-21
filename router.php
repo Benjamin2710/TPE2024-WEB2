@@ -77,6 +77,30 @@ switch ($params[0]) {
             $controller->showGenero($params[1]);
         }
         break;
+    case 'editarGenero':
+        AuthHelper::verifyAdmin($res);
+        $controller = new PeliculasController();
+        $controller->editarGenero();
+        break;
+    case 'eliminarGenero':
+        AuthHelper::verifyAdmin($res);
+        $controller = new PeliculasController();
+        if (!isset($params[1]) || empty($params[1])) {
+            $controller->showError("Falta el id del genero a eliminar");
+        }else{
+            $controller->eliminarGenero($params[1]);
+        }
+        break;
+    case 'insertarGenero':
+        AuthHelper::verifyAdmin($res);
+        $controller = new PeliculasController();
+        $controller->insertarGenero();
+        break;
+    case 'nuevoGenero':
+        AuthHelper::verifyAdmin($res);
+        $controller = new PeliculasController($res);
+        $controller->showFormAltaGenero();
+        break;
     case 'signup':
         $controller = new AuthController($res);
         $controller->showSignup();

@@ -155,7 +155,7 @@ a{
     transition: background-color 0.5s ease, border-color 0.5s ease;
 }
 
-.item #delete-button {
+.item #delete-button, .genero-container #delete-button{
     top: 15px;
     right: 15px;
     width: 100px;
@@ -341,5 +341,38 @@ li.genero{
     position: relative;
     border: 2px solid black;
     list-style: none;
+    position: relative;
     padding: 15px 25px;
+}
+
+#formGenero{
+    background-color: grey;
+    width: 80%;
+    margin: 20px auto;
+    justify-content: space-between;
+    border-radius: 30px;
+    border: 2px solid black;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    grid-template-rows: repeat(4, 1fr); 
+    gap: 10px; /* Espacio entre las celdas del grid */
+    padding: 20px;
+}
+
+#formGenero #nombre{
+    grid-column: 1 / span 2;
+}
+
+#formGenero #clasificacion_por_edad{
+    grid-column: 3 / span 2;
+}
+
+#formGenero #descripcion{
+    grid-column: span 4;
+    grid-row: 2 / span 2;
+}
+
+#formGenero #btnSubmit{
+    grid-column: 2 / span 2;
+    grid-row: 4;
 }

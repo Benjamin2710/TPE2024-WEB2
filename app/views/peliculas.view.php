@@ -34,4 +34,8 @@ class PeliculasView {
         require 'templates/itemGenero.phtml';
         test_var($genero);
     }
+
+    public function showFormAltaGenero(){
+        require 'templates/formAltaGenero.phtml';
+    }
 }

@@ -172,13 +172,67 @@ class PeliculasController {
     }
 
     public function showGenero($id){
-        if($this->generoExists($id)){
-            $genero = $this->generosModel->getGenero($id);
+        $genero = $this->generosModel->getGenero($id);
+        if($genero){
             $peliculas = $this->model->getPeliculasByGenero($id);
             $this->view->showGenero($genero, $peliculas);
         }else{
             $this->view->showError("Género no encontrado");
         }
+    }
+
+    public function showFormAltaGenero(){
+        return $this->view->showFormAltaGenero();
+    }
+
+    public function insertarGenero(){
+        if (!isset($_POST['nombre']) || empty($_POST['nombre'])) {
+            return $this->view->showError('Falta completar el nombre');
+        }
+        if (!isset($_POST['descripcion']) || empty($_POST['descripcion'])) {
+            return $this->view->showError('Falta completar la descripción');
+        }
+        if (!isset($_POST['clasificacion_por_edad']) || empty($_POST['clasificacion_por_edad'])) {
+            return $this->view->showError('Falta completar la clasificacion por edad');
+        }
+        $nombre = $_POST['nombre'];
+        $descripcion = $_POST['descripcion'];
+        $clasificacion_por_edad = $_POST['clasificacion_por_edad'];
+
+        $this->generosModel->insertarGenero($nombre, $descripcion, $clasificacion_por_edad);
+        header('Location: ' . BASE_URL . 'generos');
+    }
+
+    public function eliminarGenero($id){
+        if($this->generosModel->generoExists($id)){
+            $this->generosModel->eliminarGenero($id);
+            header('Location: ' . BASE_URL . 'generos');
+        }else{
+            $this->view->showError("Género no encontrado");
+        }
+    }
+
+    public function editarGenero(){
+        if (!isset($_POST['nombre']) || empty($_POST['nombre'])) {
+            return $this->view->showError('Falta completar el nombre');
+        }
+        if (!isset($_POST['descripcion']) || empty($_POST['descripcion'])) {
+            return $this->view->showError('Falta completar la descripción');
+        }
+        if (!isset($_POST['clasificacion_por_edad']) || empty($_POST['clasificacion_por_edad'])) {
+            return $this->view->showError('Falta completar la descripción');
+        }
+        if (!isset($_SESSION['ultima_genero_mostrado']) || empty($_POST['ultima_genero_mostrado'])) {
+            return $this->view->showError('ERROR: No se puede editar el genero');
+        }
+
+        $nombre = $_POST['nombre'];
+        $descripcion = $_POST['descripcion'];
+        $clasificacion_por_edad = $_POST['clasificacion_por_edad'];
+        $id = $_SESSION['ultima_genero_mostrado'];
+
+        $this->generosModel->editarGenero($id, $nombre, $descripcion, $clasificacion_por_edad);
+        header('Location: ' . BASE_URL . 'genero/' . $id);
     }
 
     public function showError($error) {

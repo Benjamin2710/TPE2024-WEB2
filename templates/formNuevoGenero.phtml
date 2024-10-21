@@ -1,0 +1,12 @@
+<?php    $title = $genero->nombre;?>
+<?php require 'templates/layout/header.phtml'; ?>
+
+<form action="<?= BASE_URL ?>insertarGenero" method="post" id="formGenero">
+    <input type="text" name="nombre" id="nombre" placeholder="Nombre del genero..."  required>
+    <input type="text" name="clasificacion_por_edad" id="clasificacion_por_edad" placeholder="Clasificacion por edad..." required>
+    <textarea name="descripcion" id="descripcion" placeholder="Descripcion..."></textarea>
+    <input type="submit" value="Enviar" id="btnSubmit">
+</form>
+
+<?php require 'templates/layout/footer.phtml'; ?>
+

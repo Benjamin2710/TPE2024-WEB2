@@ -17,7 +17,7 @@ class GenerosModel extends Model {
         $genero = $query->fetch(PDO::FETCH_OBJ); 
     
         return $genero;
-    }   
+    }
 
     public function getNombresIds() {
         $query = $this->db->prepare('SELECT id, nombre FROM generos');
@@ -25,6 +25,21 @@ class GenerosModel extends Model {
         $generos = $query->fetchAll(PDO::FETCH_OBJ); 
     
         return $generos;
+    }
+
+    public function insertarGenero($nombre, $descripcion, $clasificacion_por_edad) {
+        $query = $this->db->prepare('INSERT INTO generos(nombre, descripcion, clasificacion_por_edad) VALUES(?,?,?)');
+        $query->execute([$nombre, $descripcion, $clasificacion_por_edad]);
+    }
+
+    public function eliminarGenero($id) {
+        $query = $this->db->prepare('DELETE FROM generos WHERE id = ?');
+        $query->execute([$id]);
+    }
+
+    public function editarGenero($id, $nombre, $descripcion, $clasificacion_por_edad) {
+        $query = $this->db->prepare('UPDATE generos SET nombre = ?, descripcion = ?, clasificacion_por_edad = ? WHERE id = ?');
+        $query->execute([$nombre, $descripcion, $clasificacion_por_edad, $id]);
     }
 
     public function generoExists($nombre) {
