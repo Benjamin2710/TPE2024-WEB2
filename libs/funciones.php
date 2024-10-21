@@ -4,6 +4,7 @@ function test_var($var) {
     echo "<pre>";
     var_dump($var);
     echo "</pre>";
+    echo "<br>";
 }
 
 function getGeneroNombre($generos, $id_genero) { //se usa en el form editpelicula

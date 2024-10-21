@@ -24,9 +24,26 @@ class PeliculasController {
         return $newFileName;
     }
 
-    public function showPeliculas() {
-        $peliculas = $this->model->getPeliculas();
-        return $this->view->showPeliculas($peliculas);
+    public function showPeliculas($nombreGenero = null) {
+        $generos = $this->generosModel->getNombresIds();
+        if($nombreGenero != null){
+            $generosNombres = array_column($generos, 'nombre');
+            if(!in_array($nombreGenero, $generosNombres)){
+                return $this->view->showError('Género no encontrado');
+            }else{
+                $idGenero = null;
+                    foreach ($generos as $genero) {
+                        if ($genero->nombre === $nombreGenero) {
+                            $idGenero = $genero->id;
+                            break;
+                        }
+                    }
+                $peliculas = $this->model->getPeliculasByGenero($idGenero);
+            }
+        }else{
+            $peliculas = $this->model->getPeliculas();
+        }
+        return $this->view->showPeliculas($peliculas, $generos);
     }
 
     public function showPelicula($id) {
@@ -130,16 +147,6 @@ class PeliculasController {
             header('Location: ' . BASE_URL . 'peliculas');
         } else {
             return $this->view->showError('La película no existe');
-        }
-    }
-
-    public function showPeliculasByGenero($genero) {
-        $id = $this->generosModel->getIdByNombre($genero);
-        if($id){
-            $peliculas = $this->model->getPeliculasByGenero($id);
-            return $this->view->showPeliculas($peliculas);
-        }else{
-            return $this->view->showError('No se encontraron películas para el género seleccionado');
         }
     }
 

@@ -41,7 +41,7 @@ INSERT INTO `generos` (`id`, `nombre`, `descripcion`, `clasificacion_por_edad`) 
 (1, 'Acción', 'Acción. Generalmente son películas que aportan un toque de adrenalina. Incluyen acrobacias físicas, persecuciones rescates y batallas, lo que las caracteriza principalmente.', 'Sin clasificar'),
 (3, 'Drama', 'Drama is the specific mode of fiction represented in performance: a play, opera, mime, ballet, etc., performed in a theatre, or on radio or television. ', 'Sin clasificar'),
 (4, 'Terror', 'género que pretende o tiene la capacidad de asustar, causar miedo o aterrorizar sus lectores o espectadores e inducir sentimientos de horror y terror.', 'Sin clasificar'),
-(5, 'Ciencia ficcion', 'Science fiction is a genre of speculative fiction, which typically deals with imaginative and futuristic concepts such as advanced science and technology, space exploration, time travel, parallel universes, and extraterrestrial life. It is related to', 'Sin clasificar');
+(5, 'CienciaFiccion', 'Science fiction is a genre of speculative fiction, which typically deals with imaginative and futuristic concepts such as advanced science and technology, space exploration, time travel, parallel universes, and extraterrestrial life. It is related to', 'Sin clasificar');
 
 -- --------------------------------------------------------
 

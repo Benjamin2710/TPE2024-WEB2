@@ -6,7 +6,7 @@ class PeliculasView {
     public function __construct($res = null) {
         $this->res = $res;
     }
-    public function showPeliculas($peliculas) {
+    public function showPeliculas($peliculas, $generos) {
         // NOTA: el template va a poder acceder a todas las variables y constantes que tienen alcance en esta funcion
         // require 'templates/lista_tareas.phtml';
         require 'templates/listaPeliculas.phtml';

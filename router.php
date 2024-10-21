@@ -27,7 +27,7 @@ switch ($params[0]) {
     case 'peliculas':
         if (isset($params[1]) && !empty($params[1])) {
             $controller = new PeliculasController($res);
-            $controller->showPeliculasByGenero($params[1]);
+            $controller->showPeliculas($params[1]);
         }else{
             $controller = new PeliculasController($res);
             $controller->showPeliculas();

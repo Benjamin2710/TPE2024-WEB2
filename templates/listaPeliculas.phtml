@@ -7,14 +7,12 @@
         <div class="listado-categorias">
             <span>Géneros:</span>
             <ul class="lista-generos-btn">
+            <?php foreach($generos as $genero): ?>
                 <li>
-                    <span class="nombre-genero">Accion</span>
-                    <span class="btn-quitar-seleccion">X</span>
+                    <span class="nombre-genero"><a href = "<?= htmlentities(BASE_URL) ?>peliculas/<?= htmlspecialchars($genero->nombre)?>"><?= htmlspecialchars($genero->nombre)?></a></span>
                 </li>
-                <li>
-                    <span class="nombre-genero">Comedia</span>
-                    <span class="btn-quitar-seleccion">X</span>
-                </li>
+            <?php endforeach ?>
+
             </ul>
         </div>
         <select id="input-genero" name="input-genero">
