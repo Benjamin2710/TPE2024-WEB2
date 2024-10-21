@@ -14,4 +14,12 @@ function getGeneroNombre($generos, $id_genero) { //se usa en el form editpelicul
         }
     }
     return 'Género no encontrado';
-} 
+}
+ 
+function quitarEspacios($string){
+    $palabras = explode(' ', $string);
+    $palabrasConMayusculas = array_map('ucfirst', $palabras);
+    $stringConMayusculas = implode(' ', $palabrasConMayusculas);
+    $stringSinEspacios = preg_replace('/\s+/', '', $stringConMayusculas);
+    return $stringSinEspacios;
+}

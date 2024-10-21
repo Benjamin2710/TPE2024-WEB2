@@ -345,6 +345,17 @@ li.genero{
     padding: 15px 25px;
 }
 
+.genero-container>a>p{
+    background-color: lightblue;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    border: 1px solid black;
+    width: 150px;
+    margin: auto;
+}
+
 #formGenero{
     background-color: grey;
     width: 80%;

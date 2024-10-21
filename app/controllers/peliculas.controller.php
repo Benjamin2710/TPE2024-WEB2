@@ -195,7 +195,7 @@ class PeliculasController {
         if (!isset($_POST['clasificacion_por_edad']) || empty($_POST['clasificacion_por_edad'])) {
             return $this->view->showError('Falta completar la clasificacion por edad');
         }
-        $nombre = $_POST['nombre'];
+        $nombre = quitarEspacios($_POST['nombre']);
         $descripcion = $_POST['descripcion'];
         $clasificacion_por_edad = $_POST['clasificacion_por_edad'];
 
@@ -229,7 +229,7 @@ class PeliculasController {
             return $this->view->showError('ERROR: No se puede editar el genero');
         }
 
-        $nombre = $_POST['nombre'];
+        $nombre = $this->quitarEspacios($_POST['nombre']);
         $descripcion = $_POST['descripcion'];
         $clasificacion_por_edad = $_POST['clasificacion_por_edad'];
         $id = $_SESSION['ultimo_genero_mostrado'];
@@ -242,5 +242,13 @@ class PeliculasController {
 
     public function showError($error) {
         return $this->view->showError($error);
+    }
+
+    private function quitarEspacios($string){
+        $palabras = explode(' ', $string);
+        $palabrasConMayusculas = array_map('ucfirst', $palabras);
+        $stringConMayusculas = implode(' ', $palabrasConMayusculas);
+        $stringSinEspacios = preg_replace('/\s+/', '', $stringConMayusculas);
+        return $stringSinEspacios;
     }
 }
